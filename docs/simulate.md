@@ -8,6 +8,13 @@ has_toc: true
 ---
 
 GRAB package provides several functions to simulate genotype data and phenotype data.
-- We recommend conducting single-variant association tests for variants with MAC>= 20
-- For rare variant association, please use SAIGE-GENE+ to conduct set-based association tests 
+
+*Genotype Simulation* The package can
+- simulate genotype for both unrelated and related subjects
+- make PLINK files using genotype matrix
+- make BGEN files using PLINK files
+
+*Phenotype Simulation* The package can
+- simulate binary, quantitative, time-to-event, and ordinal categorical phenotypes
+- simulate phenotypes with random effect following a multivariate normal distribution
 
