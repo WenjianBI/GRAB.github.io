@@ -14,9 +14,48 @@ OutList = GRAB.SimuGMat(nSub = 500,       # 500 unrelated subjects
                         FamMode = "10-members",   # each family includes 10 members
                         nSNP = 10000,     # 10000 SNPs
                         MaxMAF = 0.5, MinMAF = 0.05)  # MAFs follow a uniform distribuiton U(0.05, 0.5)
+
+summary(OutList)
+#            Length Class      Mode
+# GenoMat    10001  data.table list
+# markerInfo     2  data.table list
+
+markerInfo = OutList$markerInfo
+#              SNP       MAF
+#     1:     SNP_1 0.3744068
+#     2:     SNP_2 0.4440979
+#     3:     SNP_3 0.3924420
+#     4:     SNP_4 0.4487561
+#     5:     SNP_5 0.2554164
+#    ---                    
+#  9996:  SNP_9996 0.3270282
+#  9997:  SNP_9997 0.2866840
+#  9998:  SNP_9998 0.0601416
+#  9999:  SNP_9999 0.2161107
+# 10000: SNP_10000 0.1632723
+
 GenoMat = OutList$GenoMat
-dim(GenoMat)   # c(1000, 10000): 1000 subjects and 10000 SNPs
+dim(GenoMat)   
+# [1]  1000 10000 # genotype matrix includes 1000 subjects and 10000 SNPs
+
 GenoMat[,1:10]
+#       SNP_1 SNP_2 SNP_3 SNP_4 SNP_5 SNP_6 SNP_7 SNP_8 SNP_9 SNP_10
+#    1:     0     1     2     2     1     0     0     0     1      1
+#    2:     1     1     1     0     0     0     0     0     1      1
+#    3:     1     1     0     1     0     0     1     0     1      1
+#    4:     1     1     1     2     1     0     1     2     0      1
+#    5:     0     2     2     1     0     0     0     0     0      1
+#   ---                                                             
+#  996:     1     0     1     0     0     0     1     2     1      1
+#  997:     1     1     0     0     1     0     1     0     1      0
+#  998:     0     2     1     1     0     1     1     0     0      0
+#  999:     2     0     1     1     1     0     0     0     0      1
+# 1000:     1     0     0     2     0     0     0     1     0      2
+
+rownames(GenoMat)[1:5]
+[1] "f1_1" "f1_2" "f1_3" "f1_4" "f1_5"   # family 1, members 1-5
+rownames(GenoMat)[996:1000]
+[1] "Subj-496" "Subj-497" "Subj-498" "Subj-499" "Subj-500"  # unrelated subjects 496-500
 ```
 
 ### Suppose the genotype missing rate is 5%
