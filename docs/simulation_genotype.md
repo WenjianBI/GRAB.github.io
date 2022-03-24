@@ -7,7 +7,7 @@ parent: Data Simulation
 ---
 
 
-```{r}   
+``` 
 ## Commen Variants with MAF ranging from (0.05, 0.5)
 set.seed(12345)
 OutList = GRAB.SimuGMat(nSub = 500, nFam = 50, FamMode = "10-members", nSNP = 10000,

@@ -11,4 +11,3 @@ GRAB package provides several functions to simulate genotype data and phenotype 
 - We recommend conducting single-variant association tests for variants with MAC>= 20
 - For rare variant association, please use SAIGE-GENE+ to conduct set-based association tests 
 
-<img src="{{site.baseurl | prepend: site.url}}/assets/img/SAIGE-pie.png" width="300">

@@ -6,7 +6,7 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-```{r}
+```
 FamFile = system.file("extdata", "simuPLINK.fam", package = "GRAB")
 FamData = read.table(FamFile)
 IID = FamData$V2  # Individual ID
