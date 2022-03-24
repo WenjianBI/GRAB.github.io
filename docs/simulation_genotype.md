@@ -6,16 +6,24 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-
+### Simulate genotype for 500 unrelated subjects and 50 families each of which includes 10 members
 ``` 
 ## Commen Variants with MAF ranging from (0.05, 0.5)
 set.seed(12345)
 OutList = GRAB.SimuGMat(nSub = 500, nFam = 50, FamMode = "10-members", nSNP = 10000,
                         MaxMAF = 0.5, MinMAF = 0.05)
 GenoMat = OutList$GenoMat 
+```
+
+### Suppose the genotype missing rate is 5%
+```
 MissingRate = 0.05
 indexMissing = sample(length(GenoMat), MissingRate * length(GenoMat))
 GenoMat[indexMissing] = -9
+```
+
+### Make a plink file based on the genotype matrix
+```
 extDir = system.file("extdata", package = "GRAB")
 extPrefix = paste0(extDir, "/simuPLINK")
 GRAB.makePlink(GenoMat, extPrefix)
