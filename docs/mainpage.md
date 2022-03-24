@@ -6,7 +6,7 @@ description: "Documentation for SAIGE and SAIGE-GENE+."
 permalink: /
 ---
 
-SAIGE is an R package developed with Rcpp for genome-wide association tests in large-scale data sets and biobanks. The method
+GRAB is an R package developed with Rcpp for Genome-wide Robust Analaysis for Biobank data. The method
 
 - accounts for sample relatedness based on the generalized mixed models
 - allows for model fitting with either full or sparse genetic relationship matrix (GRM)
