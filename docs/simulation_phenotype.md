@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Step 2
+title: Phenotype Simulation
 nav_order: 2
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 parent: Data Simulation
