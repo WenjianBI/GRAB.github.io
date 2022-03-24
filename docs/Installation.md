@@ -7,12 +7,21 @@ has_children: true
 has_toc: false
 ---
 
-How to install and run SAIGE and SAIGE-GENE
+## Install GRAB package (current version 0.0.2.5)
 
+```
+library(devtools)  # author version: 2.4.2, use install.packages("devtools") first
+install_github("GeneticAnalysisinBiobanks/GRAB", INSTALL_opts=c("--no-multiarch"))  # The INSTALL_opts is required in Windows OS.
+library(GRAB)
+```
 
-## Install SAIGE/SAIGE-GENE (current version 1.0.0 (updated on March 15 2022))
+## Operation System (OS) in which the package has been installed successfully
 
-### List of dependencies:
+### Windows
+
+### Linux
+
+## List of dependencies (to be updated):
 
 * R >= 3.6.1, gcc >= 5.4.0, cmake 3.14.1, [cget](https://cget.readthedocs.io/en/latest/src/intro.html#installing-cget), [savvy](https://github.com/statgen/savvy)
 * R packages: Rcpp (>= 1.0.7), RcppArmadillo, RcppParallel, data.table, SPAtest (== 3.1.2),
@@ -22,7 +31,7 @@ How to install and run SAIGE and SAIGE-GENE
 * Two libraries for reading VCF files. Will be automatically installed during the SAIGE installation
 -  [cget](https://cget.readthedocs.io/en/latest/src/intro.html#installing-cget), [savvy](https://github.com/statgen/savvy)
 
-### Logs:
+## Logs (to be updated):
 
 v0.99.3 (March 12, 2022): all marker IDs used with --condition and in the group file for set-based tests need to use the format chr:pos:ref:alt
 
