@@ -84,6 +84,7 @@ table(phenoO)
 #                control = list(pEachGroup=c(8, 1, 1)))
 ```
 
-The below shows the distribution of phenotypes compared to linear predicators ```eta```.
+The distribution of phenotypes compared to linear predicators ```eta``` is as below.
+
 <img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
 
