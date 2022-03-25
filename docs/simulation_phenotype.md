@@ -31,7 +31,7 @@ CovarFile = system.file("extdata", "simuCovar.txt", package = "GRAB")
 Covar = data.table::fread(CovarFile, header=T)
 beta.AGE = 0.5
 beta.GENDER = 0.5
-eta = with(Covar, beta.AGE * AGE + beta.GENDER + GENDER)
+eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
 ```
 
 
