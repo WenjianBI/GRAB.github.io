@@ -42,6 +42,10 @@ beta.GENDER = 0.5
 eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
 ```
 
+### Note about the linear predictors ```eta```
+
+If the simulated phenotype is associated with family structure (mixed model approaches) or genotype (to evaluate power), then the linear predictors ```eta``` can be updated by adding other terms. 
+
 ## Step 2: simulate phenotypes using ```eta```
 
 ### Step 2(a) binary phenoype
@@ -80,5 +84,6 @@ table(phenoO)
 #                control = list(pEachGroup=c(8, 1, 1)))
 ```
 
+The below shows the distribution of phenotypes compared to linear predicators ```eta```.
 <img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
 

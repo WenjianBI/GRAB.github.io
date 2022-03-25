@@ -58,7 +58,7 @@ GenoMat[c(1:5,996:1000),1:10]  # Subjects 1-5 are from family 1; Subjects 496-50
 
 ```
 
-### NOTE about FamMode
+### Note about FamMode
 
 Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then we only simulate unrelated subjects.
 
