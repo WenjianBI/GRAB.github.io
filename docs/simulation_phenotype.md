@@ -85,6 +85,10 @@ table(phenoO)
 ```
 
 The distribution of phenotypes compared to linear predicators ```eta``` is as below.
+- quantitative phenotype: positive correction between ```eta``` and phenotypes
+- binary phenotype: higher ```eta```, higher possibility of being cases
+- ordinal categorical phenotype: higher ```eta```, higher possibility of being groups with larger number
 
 <img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
+
 
