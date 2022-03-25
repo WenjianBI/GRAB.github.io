@@ -46,22 +46,27 @@ eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
 
 ### Step 2(a) binary phenoype
 ```
-GRAB.SimuPheno(eta, traitType = "binary", 
-               control = list(pCase=0.1))
+phenoB = GRAB.SimuPheno(eta, traitType = "binary", 
+                        control = list(pCase=0.1))
+table(phenoB)
 ```
 
 ### Step 2(b) quantitative phenoype
 ```
-GRAB.SimuPheno(eta, traitType = "quantitative", 
-               control = list(sdError=1))
+phenoQ = GRAB.SimuPheno(eta, traitType = "quantitative", 
+                        control = list(sdError=1))
 ```
 
 ### Step 2(c) ordinal categorical phenoype
 ```
-GRAB.SimuPheno(eta, traitType = "ordinal",
-               control = list(pEachGroup = c(1,1,1)))
-               
+phenoO = GRAB.SimuPheno(eta, traitType = "ordinal",
+                        control = list(pEachGroup = c(8,1,1)))
+table(phenoO)                        
+```
+
+### Step 2(d) time-to-event phenoype
+```
 # To be continued
 # GRAB.SimuPheno(eta, traitType = "time-to-event",
-#                control = list())
+#                control = list(pEachGroup=c(8, 1, 1)))
 ```
