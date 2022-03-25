@@ -104,4 +104,5 @@ system("bgenix -g simuBGEN.bgen -index")
 Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` can simulate 
 - common variants (MAF > 5%) and 
 - low frequency variants (1% < MAF < 5%). 
+
 For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 

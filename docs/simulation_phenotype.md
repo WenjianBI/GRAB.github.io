@@ -8,12 +8,13 @@ parent: Data Simulation
 
 # Phenotype simulation using GRAB package
 
+The document can show how to simulate
 - Binary phenotype
 - Quantitative phenotype
 - Ordinal categorical phenotype
 - Time-to-event data
 
-## The below is an example to simulate covariates data frame in R
+## An example to simulate covariates data frame in R
 
 ```
 set.seed(678910)
@@ -41,4 +42,26 @@ beta.GENDER = 0.5
 eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
 ```
 
+## Step 2: simulate phenotypes using ```eta```
 
+### Step 2(a) binary phenoype
+```
+GRAB.SimuPheno(eta, traitType = "binary", 
+               control = list(pCase=0.1))
+```
+
+### Step 2(b) quantitative phenoype
+```
+GRAB.SimuPheno(eta, traitType = "quantitative", 
+               control = list(sdError=1))
+```
+
+### Step 2(c) ordinal categorical phenoype
+```
+GRAB.SimuPheno(eta, traitType = "ordinal",
+               control = list(pEachGroup = c(1,1,1)))
+               
+# To be continued
+# GRAB.SimuPheno(eta, traitType = "time-to-event",
+#                control = list())
+```
