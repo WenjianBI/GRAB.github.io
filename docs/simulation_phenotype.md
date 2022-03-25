@@ -84,10 +84,12 @@ table(phenoO)
 #                control = list(pEachGroup=c(8, 1, 1)))
 ```
 
-The distribution of phenotypes compared to linear predicators ```eta``` is as below.
+## The distribution of simulated phenotypes
+The distribution of simulated phenotypes compared to linear predicators ```eta``` is as below.
 - quantitative phenotype: positive correction between ```eta``` and phenotypes
 - binary phenotype: higher ```eta```, higher possibility of being cases
 - ordinal categorical phenotype: higher ```eta```, higher possibility of being groups with larger number
 
+<img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
 
 
