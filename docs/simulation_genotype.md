@@ -11,10 +11,10 @@ parent: Data Simulation
 ### The below is an example to simulate genotype matrix in R
 ``` 
 set.seed(12345)
-OutList = GRAB.SimuGMat(nSub = 500,       # 500 unrelated subjects
-                        nFam = 50,        # 50 families
-                        FamMode = "10-members",   # each family includes 10 members
-                        nSNP = 10000,     # 10000 SNPs
+OutList = GRAB.SimuGMat(nSub = 500,                   # 500 unrelated subjects
+                        nFam = 50,                    # 50 families
+                        FamMode = "10-members",       # each family includes 10 members
+                        nSNP = 10000,                 # 10000 SNPs
                         MaxMAF = 0.5, MinMAF = 0.05)  # MAFs follow a uniform distribuiton U(0.05, 0.5)
 
 summary(OutList)
@@ -43,7 +43,7 @@ dim(GenoMat)
 class(GenoMat)
 # [1] "matrix" "array"
 
-GenoMat[c(1:5,996:1000),1:10]  # Subjects 1-5 are from family 1, Subjects 496-500 are unrelated subjects
+GenoMat[c(1:5,996:1000),1:10]  # Subjects 1-5 are from family 1; Subjects 496-500 are unrelated subjects
 #          SNP_1 SNP_2 SNP_3 SNP_4 SNP_5 SNP_6 SNP_7 SNP_8 SNP_9 SNP_10
 # f1_1         0     1     2     2     1     0     0     0     1      1
 # f1_2         1     1     1     0     0     0     0     0     1      1
@@ -62,7 +62,8 @@ GenoMat[c(1:5,996:1000),1:10]  # Subjects 1-5 are from family 1, Subjects 496-50
 
 Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then we only simulate unrelated subjects.
 
-## Simulate missing genotype
+## Simulate genotype missing
+We follow PLINK to use -9 to indicate genotype missing.
 ```
 MissingRate = 0.05
 indexMissing = sample(length(GenoMat), MissingRate * length(GenoMat))
@@ -80,33 +81,24 @@ GenoMat[indexMissing] = -9
 # Subj-500     1     0     0     2     0     0     0     1     0      2
 ```
 
-## Make PLINK files using the genotype matrix
+## Make PLINK PED/MAP files using the genotype matrix
 ```
 extDir = system.file("extdata", package = "GRAB")
 extPrefix = paste0(extDir, "/simuPLINK")
 GRAB.makePlink(GenoMat, extPrefix)
+```
 
+### If you have installed PLINK and PLINK2 softwares, then you can use the following commands to generate PLINK bfiles and BGEN files. 
+
+```
 setwd(extDir)
 system("plink --file simuPLINK --make-bed --out simuPLINK")
 system("plink --bfile simuPLINK --recode A --out simuRAW")
 system("plink2 --bfile simuPLINK --export bgen-1.2 bits=8 ref-first --out simuBGEN  # UK Biobank use 'ref-first'")
 system("bgenix -g simuBGEN.bgen -index")
-
-## Rare Variants with MAF ranging from (0.0001, 0.01)
-set.seed(34567)
-OutList = GRAB.SimuGMat(nSub = 500, nFam = 50, FamMode = "10-members", nSNP = 10000,
-                        MaxMAF = 0.01, MinMAF = 0.0001)
-GenoMat = OutList$GenoMat 
-MissingRate = 0.05
-indexMissing = sample(length(GenoMat), MissingRate * length(GenoMat))
-GenoMat[indexMissing] = -9
-extDir = system.file("extdata", package = "GRAB")
-extPrefix = paste0(extDir, "/simuPLINK_RV")
-GRAB.makePlink(GenoMat, extPrefix)
-
-setwd(extDir)
-system("plink --file simuPLINK_RV --make-bed --out simuPLINK_RV")
-system("plink --bfile simuPLINK_RV --recode A --out simuRAW_RV")
-system("plink2 --bfile simuPLINK_RV --export bgen-1.2 bits=8 ref-first --out simuBGEN_RV  # UK Biobank use 'ref-first'")
-system("bgenix -g simuBGEN_RV.bgen -index")
 ```
+
+
+## About rare variants simulation
+
+Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` can simulate common variants (MAF > 5%) and low frequency variants (1% < MAF < 5%). For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 
