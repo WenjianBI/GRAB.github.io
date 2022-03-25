@@ -6,9 +6,9 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-## Simulate a genotype matrix
+# Genotype simulation using GRAB package and other tools
 
-### The below is an example to simulate genotype matrix in R
+## The below is an example to simulate genotype matrix in R
 ``` 
 set.seed(12345)
 OutList = GRAB.SimuGMat(nSub = 500,                   # 500 unrelated subjects
@@ -88,7 +88,7 @@ extPrefix = paste0(extDir, "/simuPLINK")
 GRAB.makePlink(GenoMat, extPrefix)
 ```
 
-### If you have installed PLINK and PLINK2 softwares, then you can use the following commands to generate PLINK bfiles and BGEN files. 
+If you have installed PLINK and PLINK2 softwares, then you can use the following commands to generate PLINK bfiles and BGEN files. 
 
 ```
 setwd(extDir)
@@ -101,4 +101,7 @@ system("bgenix -g simuBGEN.bgen -index")
 
 ## About rare variants simulation
 
-Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` can simulate common variants (MAF > 5%) and low frequency variants (1% < MAF < 5%). For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 
+Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` can simulate 
+- common variants (MAF > 5%) and 
+- low frequency variants (1% < MAF < 5%). 
+For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 

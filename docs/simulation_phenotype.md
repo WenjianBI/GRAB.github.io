@@ -6,9 +6,15 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-# Simulate a phenotype data frame
+# Phenotype simulation using GRAB package
+
+- Binary phenotype
+- Quantitative phenotype
+- Ordinal categorical phenotype
+- Time-to-event data
 
 ## The below is an example to simulate covariates data frame in R
+
 ```
 set.seed(678910)
 FamFile = system.file("extdata", "simuPLINK.fam", package = "GRAB")
@@ -22,7 +28,8 @@ CovarFile = system.file("extdata", "simuCovar.txt", package = "GRAB")
 write.table(Covar, CovarFile, row.names = F, quote = F, sep = "\t")
 ```
 
-## Step 1: simulate linear predictors based on the covariates and others
+## Step 1: simulate linear predictors ```eta```
+
 ```
 library(tidyr)
 library(dplyr)
