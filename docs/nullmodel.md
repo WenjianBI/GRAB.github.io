@@ -40,10 +40,16 @@ Argument ```traitType``` specifies the type of phenotype data. Currently, ```GRA
 | ordinal categorical data | "ordinal"       | "POLMM"    |  YES                      |
 | time-to-event data       | "time-to-event" | "SPACox"   |  NO                       |
 
-## Step 2: decide Dense GRM or Sparse GRM to characterize family relatedness
+## Step 2: choose Dense GRM or Sparse GRM
 
-- SparseGRM: If Sparse GRM is used, please make a sparse GRM file prior to null model fitting.
-- DenseGRM: If Dense GRM is used, please give PLINK files as input
+Both dense GRM and sparse GRM are supported in ```GRAB``` package to characterize family relatedness, which can avoid high type one error rates.
+
+| Which GRM   | Pros.    | Cons       | Required arguments  |
+|:-----------:|:----------:|:--------:|:-------------------:|
+| Dense GRM   | More powerful | Slow  | ```SparseGRMFile``` |
+| Sparse GRM  | Fast  | Less powerful | ```GenoFile```      |
+
+NOTE: Based on extensive simulation results, for binary and ordinal categorical data analysis, analyses using dense and sparse GRM perform similarly in terms of both type one error rates and powers.
 
 ## Step 3: about argument ```control``` 
 
