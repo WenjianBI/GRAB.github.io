@@ -34,12 +34,15 @@ PlinkPrefix = tools::file_path_sans_ext(GenoFile)   # remove file extension
   - ```minMafGRM```: Minimal value of MAF cutoff to select markers (from PLINK files) to make sparse GRM. (default=0.01)
   - ```maxMissingGRM```: Maximal value of missing rate to select markers (from PLINK files) to make sparse GRM. (default=0.1)
   - ```threadNum```: Number of threads (CPU cores) to use.
+  
+Example:
 ```
 nPartsGRM = 2;
-for(partParallel in 1:nPartsGRM){
-  getTempFilesFullGRM(PlinkPrefix, 
-                      nPartsGRM = nPartsGRM, 
-                      partParallel = partParallel)
+for(partParallel in 1:nPartsGRM)
+{
+   getTempFilesFullGRM(PlinkPrefix, 
+                       nPartsGRM = nPartsGRM, 
+                       partParallel = partParallel)
 }
 ```
 
@@ -47,6 +50,8 @@ for(partParallel in 1:nPartsGRM){
 - Function ```getSparseGRM``` can search the temporary files from ```tempDir``` based on arguments ```minMafGRM``` and ```maxMissingGRM```.
 - Argument ```relatednessCutoff``` is the cutoff for sparse GRM, only kinship coefficient greater than this cutoff will be retained in sparse GRM. (default=0.05)
 - If argument ```rm.tempFiles``` is set as ```TRUE```, then all temporary files will be removed.
+
+Example:
 ```
 SparseGRMFile = system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
 getSparseGRM(PlinkPrefix, 
