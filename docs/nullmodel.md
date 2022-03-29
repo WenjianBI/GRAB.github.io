@@ -9,7 +9,7 @@ has_toc: true
 
 # Null model fitting using GRAB package 
 
-```GRAB``` package gives a generic framework to support a wide variaty of commonly used phenotypes. 
+```GRAB``` package gives a generic framework to analyze a wide variaty of commonly used phenotypes. 
 
 ## Quick start-up examples
 ```
@@ -26,19 +26,14 @@ obj.POLMM = GRAB.NullModel(formula = factor(Ordinal) ~ Cova1 + Cova2,
 
 ## Step 1: choose ```traitType``` and ```method```
 
-Argument ```traitType``` specifies the type of phenotype data. Currently, ```GRAB``` package supports the below 
+Arguments ```traitType``` and ```method``` specify the type of phenotype data and the analysis approach. Currently, ```GRAB``` package supports the below combination 
 
-- ```binary```: 
-- ```quantitative```
-- ```ordinal```: method can be ```POLMM```
-- ```time-to-event```
-
-| phenotype                | ```traitType``` |```method```|If support related subjects|
-|:------------------------:|:---------------:|:----------:|:-------------------------:|
-| binary data              | "binary"        | "SAIGE"    |  YES                      |
-| quantitative data        | "quantitative"  | "SAIGE"    |  YES                      |
-| ordinal categorical data | "ordinal"       | "POLMM"    |  YES                      |
-| time-to-event data       | "time-to-event" | "SPACox"   |  NO                       |
+| phenotype                | ```traitType``` |```method```| Related subjects |
+|:------------------------:|:---------------:|:----------:|:----------------:|
+| binary data              | "binary"        | "SAIGE"    |  YES             |
+| quantitative data        | "quantitative"  | "SAIGE"    |  YES             |
+| ordinal categorical data | "ordinal"       | "POLMM"    |  YES             |
+| time-to-event data       | "time-to-event" | "SPACox"   |  NO              |
 
 ## Step 2: choose Dense GRM or Sparse GRM
 
