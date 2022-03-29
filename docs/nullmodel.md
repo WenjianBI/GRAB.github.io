@@ -33,6 +33,13 @@ Argument ```traitType``` specifies the type of phenotype data. Currently, ```GRA
 - ```ordinal```: method can be ```POLMM```
 - ```time-to-event```
 
+| phenotype                | ```traitType``` |```method```|If support related subjects|
+|:------------------------:|:---------------:|:----------:|:-------------------------:|
+| binary data              | "binary"        | "SAIGE"    |  YES                      |
+| quantitative data        | "quantitative"  | "SAIGE"    |  YES                      |
+| ordinal categorical data | "ordinal"       | "POLMM"    |  YES                      |
+| time-to-event data       | "time-to-event" | "SPACox"   |  NO                       |
+
 ## Step 2: decide Dense GRM or Sparse GRM to characterize family relatedness
 
 - SparseGRM: If Sparse GRM is used, please make a sparse GRM file prior to null model fitting.
