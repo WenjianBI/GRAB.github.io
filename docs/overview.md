@@ -7,7 +7,7 @@ has_children: true
 has_toc: false
 ---
 
-# Null model fitting using GRAB package 
+# Overview of GRAB package 
 
 GRAB package includes multiple approaches to analyze
 
