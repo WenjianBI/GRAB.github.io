@@ -7,4 +7,18 @@ has_children: true
 has_toc: false
 ---
 
-<img src="{{site.baseurl | prepend: site.url}}assets/img/saige-siage-gene-outline.png">
+# Null model fitting using GRAB package 
+
+GRAB package includes multiple approaches to analyze
+
+- Binary phenotype
+- Quantitative phenotype
+- Ordianl categorical phenotype
+- Time-to-event phenotype
+
+All of these approaches share the same analysis framework including the following three steps
+
+- Step 0: Make a Sparse GRM or prepare PLINK/BGEN files for Dense GRM
+- Step 1: Fit a null model including phenotype, covariates, and GRM (if applied)
+- Step 2: Conduct score testing to associate phenotype and genotype
+

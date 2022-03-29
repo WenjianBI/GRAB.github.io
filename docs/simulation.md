@@ -11,14 +11,15 @@ has_toc: true
 
 ## Genotype Simulation
 
-The document can show users how to 
+The document demonstrates how to 
 - simulate a genotype matrix for unrelated and related subjects
 - make PLINK files using the genotype matrix
 - make BGEN files using PLINK files
 
 ## Phenotype Simulation
 
-The document can show users how to 
+The document demonstrates how to 
 - simulate binary, quantitative, time-to-event, and ordinal categorical phenotypes
 - simulate phenotypes with random effect following a multivariate normal distribution
+- simulate phenotypes using real genotype data (given PLINK files)
 
