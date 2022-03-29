@@ -16,7 +16,7 @@ Both dense GRM and sparse GRM are supported in ```GRAB``` package to characteriz
 | Dense GRM   | More powerful | Slow  | ```SparseGRMFile``` |
 | Sparse GRM  | Fast  | Less powerful | ```GenoFile```      |
 
-NOTE: Based on extensive simulation results, for binary and ordinal categorical data analysis, analyses using dense and sparse GRM perform similarly in terms of both type one error rates and powers.
+NOTE: Based on simulation and real data analysis results, for binary and ordinal categorical data analysis, analyses using dense and sparse GRM perform similarly in terms of both type one error rates and powers.
 
 ## Prior to using GRM
 
