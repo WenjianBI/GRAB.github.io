@@ -59,3 +59,25 @@ getSparseGRM(PlinkPrefix,
              SparseGRMFile = SparseGRMFile,
              relatednessCutoff = 0.05)
 ```
+
+## About the ```SparseGRMFile```
+
+The below gives more details about the ```SparseGRMFile```
+```
+SparseGRMFile = system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
+SparseGRM = data.table::fread(SparseGRMFile)
+SparseGRM
+#            ID1      ID2     Value
+#    1:     f1_1     f1_1 0.9591102
+#    2:     f1_2     f1_2 1.0227757
+#    3:     f1_3     f1_3 1.0278691
+#    4:     f1_4     f1_4 1.0138606
+#    5:     f1_5     f1_1 0.4640743
+#   ---                            
+# 2546: Subj-496 Subj-496 1.0031059
+# 2547: Subj-497 Subj-497 0.9952855
+# 2548: Subj-498 Subj-498 0.9829549
+# 2549: Subj-499 Subj-499 1.0086861
+# 2550: Subj-500 Subj-500 0.9786987
+```
+
