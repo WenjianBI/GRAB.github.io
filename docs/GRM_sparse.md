@@ -4,46 +4,29 @@ title: Sparse GRM
 nav_order: 2
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 parent: Genetic Relation Matrix (GRM)
-has_children: true
+has_children: false
 ---
 
-## Step 0: create a sparse GRM
+# How to make a Sparse GRM file
 
+## Start-up examples
+```
+## Input data:
+GenoFile = system.file("extdata", "example.bed", package = "GRAB")
+PlinkFile = tools::file_path_sans_ext(GenoFile)   # remove file extension
+nPartsGRM = 2;   # we recommend setting nPartsGRM = 250 for UK Biobank data analysis with 500K samples.
 
-### SAIGE and SAIGE-GENE can take sparse GRM for fitting the null model and in association tests
+# Step 1:
+# We strongly recommend parallel computing in high performance clusters (HPC). 
+for(partParallel in 1:nPartsGRM){
+  getTempFilesFullGRM(PlinkFile, nPartsGRM, partParallel)  # this function is only supported in Linux OS
+}
 
-* This sparse GRM only needs to be created once for each data set, e.g. a biobank,  and can be used for all different phenotypes as long as all tested samples are in the sparse GRM.
-* Multiple programs can be used to generate a sparse GRM
+# After step 1, the temporary files are in tempDir (default: system.file("SparseGRM", "temp", package = "GRAB")), which might needs a large amount of space if the sample size > 100K.
 
-
-1. SAIGE provides a script to create a sparse GRM
-    *The program will output a file ended with sampleIDs.txt that contains sample IDs for the sparse GRM and a file ended with .sparseGRM.mtx that contains the sparse GRM
-    * These two files can be then directly used in the next steps 
-
-    ```
-    #For help information
-    Rscript createSparseGRM.R --help
-    ```
-
-
-    ``` 
-    Rscript createSparseGRM.R       \
-        --plinkFile=./input/nfam_100_nindep_0_step1_includeMoreRareVariants_poly \
-        --nThreads=4  \
-        --outputPrefix=./output/sparseGRM       \
-        --numRandomMarkerforSparseKin=2000      \
-        --relatednessCutoff=0.125
-    ```
-2. [GCTA](https://yanglab.westlake.edu.cn/software/gcta/#MakingaGRM)
-
-    ```
-    gcta64 \
-        --bfile ./input/nfam_100_nindep_0_step1_includeMoreRareVariants_poly \
-        --out ./output/sparseGRM \
-        --make-grm-part 3 1 \
-        --maf 0.01 \
-        --geno 0.15 \
-        --thread-num 2
-    ```
-
-3. [KING](https://www.kingrelatedness.com/manual.shtml)
+# Step 2:
+# Combine files in Step 1 to make a SparseGRMFile,
+tempDir = system.file("SparseGRM", "temp", package = "GRAB")
+SparseGRMFile = gsub("temp", "SparseGRM.txt", tempDir)
+getSparseGRM(PlinkFile, nPartsGRM, SparseGRMFile)
+```

@@ -4,7 +4,7 @@ title: Dense GRM
 nav_order: 1
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 parent: Genetic Relation Matrix (GRM)
-has_children: true
+has_children: false
 ---
 
 ## Step 0: create a sparse GRM

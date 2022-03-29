@@ -13,9 +13,9 @@ POLMM approach is an accurate and efficient approach to GWAS with an ordinal cat
 
 ## Prior to analysis
 
-- The left side of argument ```formula``` should be a factor. We highly recommend users explicitly specify ```levels``` if function ```factor```.
+- The left side of argument ```formula``` should be a factor. If function ```factor``` is used to convert phenotype to a factor, we highly recommend users explicitly specify argument ```levels```.
 
-- It is recommended to use Sparse GRM option. Using sparse GRM is fast and we did not observe an obvious power loss compared to using dense GRM.
+- We recommend using Sparse GRM to adjust for family relatedness. Using sparse GRM is fast and we did not observe an obvious power loss compared to using dense GRM.
 
 ## Start-up examples
 
@@ -23,14 +23,15 @@ POLMM approach is an accurate and efficient approach to GWAS with an ordinal cat
 ```
 PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
 PhenoData = data.table::fread(PhenoFile, header = T)
-PhenoData = PhenoData %>% mutate(OrdinalPheno = factor(OrdinalPheno, levels = c(0, 1, 2)))
+PhenoData = PhenoData %>% mutate(OrdinalPheno = factor(OrdinalPheno, 
+                                                       levels = c(0, 1, 2)))
 ```
 
 ### If dense GRM is used in model fitting, please first prepare PLINK files ```GenoFile```
 ```
 SparseGRMFile =  system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
 GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
-obj.POLMM = GRAB.NullModel(factor(OrdinalPheno) ~ Cova1 + Cova2,
+obj.POLMM = GRAB.NullModel(formula = factor(OrdinalPheno) ~ Cova1 + Cova2,
                            data = PhenoData, 
                            subjData = PhenoData$IID, 
                            method = "POLMM", 
