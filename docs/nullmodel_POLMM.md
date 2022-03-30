@@ -13,6 +13,7 @@ POLMM approach is an accurate and efficient approach to GWAS with an ordinal cat
 
 ## Main features
 
+- designed for ordinal categorical phenotype
 - accurate for balanced and unbalanced phenotypic distributions
 - scalable for a large-scale biobank data analysis
 - support both dense GRM and sparse GRM to adjust for family relatedness

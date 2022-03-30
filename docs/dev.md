@@ -10,7 +10,7 @@ has_children: true
 
 ```GRAB``` package provides a generic framework of GWAS on a large-scale biobank data. The below gives details about how to incorporate a new tool.
 
-Suppose that the method is "ABCDE", then the following functions are required.
+Suppose that the method is ```ABCDE```, then the following functions are required.
 - checkControl.NullModel.ABCDE(control, optionGRM)
 - fitNullModel.ABCDE(response, designMat, subjData, control, optionGRM, genoType, markerInfo)
 - checkControl.Marker.ABCDE(control, optionGRM)
@@ -28,14 +28,16 @@ Suppose that the method is "ABCDE", then the following functions are required.
 
 ## Function ```fitNullModel.ABCDE```
 
+The function ```fitNullModel.ABCDE``` is a lower function to fit null model based on appraoch ```ABCDE```. In main function ```GRAB.NullModel```, the input is first converted to the following data, which is then passed to function ```fitNullModel.ABCDE```.
+
 ### Input
-- response:
-- designMat: 
-- subjData
-- control
-- optionGRM
-- genoType
-- markerInfo
+- response: output of function ```model.response```
+- designMat: output of function ```model.matrix``` after removing column of ```(Intercept)```.
+- subjData: subject ID
+- control: output of function ```checkControl.NullModel```.
+- optionGRM: ```"SparseGRM"``` or ```"DenseGRM"```
+- genoType: ```"PLINK"``` or ```"BGEN"```
+- markerInfo: a data frame to record marker infomation used in GRM construction.
 
 ### Output
 - control: a list
