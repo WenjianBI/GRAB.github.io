@@ -98,7 +98,6 @@ system("plink2 --bfile simuPLINK --export bgen-1.2 bits=8 ref-first --out simuBG
 system("bgenix -g simuBGEN.bgen -index")
 ```
 
-
 ## About rare variants simulation
 
 Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` can simulate 
@@ -106,3 +105,23 @@ Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` c
 - low frequency variants (1% < MAF < 5%). 
 
 For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 
+
+## Simulate genotype using real data
+
+If PLINK or BGEN files are available function ```GRAB.SimuGMatFromGenoFile``` can simulate genotype using the real data.
+
+An example is as below and more details can be seen via ?GRAB.SimuGMatFromGenoFile
+```
+nFam = 2
+nSub = 3
+FamMode = "10-members"
+PLINKFile = system.file("extdata", "example.bed", package = "GRAB")
+IDsToIncludeFile = system.file("extdata", "example.IDsToIncludeFile.txt", package = "GRAB")
+RangesToIncludeFile = system.file("extdata", "example.RangesToIncludeFile.txt", package = "GRAB")
+
+GenoList = GRAB.SimuGMatFromGenoFile(nFam, nSub, FamMode, PLINKFile,
+                                     control = list(IDsToIncludeFile = IDsToIncludeFile,
+                                                   RangesToIncludeFile = RangesToIncludeFile))
+```
+
+

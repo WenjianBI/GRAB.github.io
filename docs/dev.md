@@ -32,7 +32,7 @@ The function ```fitNullModel.ABCDE``` is a lower function to fit null model base
 
 ### Input
 - response: output of function ```model.response```
-- designMat: output of function ```model.matrix``` after removing column of ```(Intercept)```.
+- designMat: output of function ```model.matrix``` after removing column of ```(Intercept)``` if any.
 - subjData: subject ID
 - control: output of function ```checkControl.NullModel```.
 - optionGRM: ```"SparseGRM"``` or ```"DenseGRM"```
