@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Null Model Fitting
+title: Association Approaches
 nav_order: 6
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 has_children: true
@@ -46,11 +46,11 @@ Both dense GRM and sparse GRM are supported in ```GRAB``` package to characteriz
 
 NOTE: Based on extensive simulation results, for binary and ordinal categorical data analysis, analyses using dense and sparse GRM perform similarly in terms of both type one error rates and powers.
 
-## Step 3: about argument ```control``` 
+## Note: about argument ```control``` 
 
-Argument ```control``` is to specify the list of parameters for controlling the fitting process. 
+Argument ```control``` is to specify the list of parameters for controlling the fitting and tests process. 
 
-## Step 4: check details for different approaches
+## Check details for different approaches
 
 - ```POLMM```: ordinal categorical data analysis 
 - ```SAIGE```: binary and quantiative data analysis

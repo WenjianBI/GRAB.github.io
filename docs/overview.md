@@ -2,7 +2,7 @@
 layout: default
 title: Overview
 nav_order: 2
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "Overview of GRAB package."
 has_children: true
 has_toc: false
 ---
@@ -11,14 +11,14 @@ has_toc: false
 
 GRAB package includes multiple approaches to analyze
 
-- Binary phenotype
-- Quantitative phenotype
-- Ordianl categorical phenotype
-- Time-to-event phenotype
+- Binary phenotype (SAIGE, SAIGE-GENE)
+- Quantitative phenotype (SAIGE, SAIGE-GENE)
+- Ordianl categorical phenotype (POLMM, POLMM-GENE)
+- Time-to-event phenotype (SPACox)
 
 All of these approaches share the same analysis framework including the following three steps
 
-- Step 0: Make a Sparse GRM or prepare PLINK/BGEN files for Dense GRM
+- Step 0: Make a Sparse GRM or prepare PLINK binary files for Dense GRM
 - Step 1: Fit a null model including phenotype, covariates, and GRM (if applied)
-- Step 2: Conduct score testing to associate phenotype and genotype
+- Step 2: Conduct single-variant or set-based tests to associate phenotype and genotype
 

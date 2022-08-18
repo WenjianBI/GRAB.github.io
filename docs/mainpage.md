@@ -2,46 +2,64 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Documentation for SAIGE and SAIGE-GENE+."
+description: "Main page for GRAB package."
 permalink: /
 ---
 
-GRAB is an R package developed with Rcpp for Genome-wide Robust Analaysis for Biobank data. The method
+GRAB is an R package developed with Rcpp for Genome-wide Robust Analaysis designed for Biobank data (GRAB). The package includes multiple approaches which
 
-- accounts for sample relatedness based on the generalized mixed models
-- allows for model fitting with either full or sparse genetic relationship matrix (GRM)
-- works for quantitative and binary traits
-- handles case-control imbalance of binary traits
+- account for sample relatedness using Genetic Relationship Matrix (GRM)
+- support multiple phenotypes including quantitative, binary, time-to-event, and ordinal categorical traits
+- handle unbalanced phenotypic distribution (e.g. case-control imbalance of binary traits)
 - computationally efficient for large data sets
-- performs single-variant association tests
-- provides effect size estimation through Firth's Bias-Reduced Logistic Regression
-- performs conditional association analysis
+- performs single-variant and set-based association tests such as Burden, SKAT, and SKAT-O test
 
-SAIGE-GENE (now known as SAIGE-GENE+) are new method extension in the R package for testing rare variant in set-based tests.
+For set-based association tests, 
 - performs BURDEN, SKAT, and SKAT-O tests
 - allows for tests on multiple minor allele frequencies cutoffs and functional annotations
 - allows for specifying weights for markers in the set-based tests
 - performs conditional analysis to identify associations independent from nearly GWAS signals
 
-
 The package takes genotype file input in the following formats
-- PLINK (bed, bim, fam), BGEN, VCF, BCF, SAV
+- PLINK binary files (.bed, .bim, .fam), BGEN (.bgen, .bgi, .sample)
 
-## Citation
+## Approaches
 
-### SAIGE:
-- Zhou W, Nielsen JB, Fritsche LG, Dey R, Gabrielsen ME, Wolford BN, LeFaive J, VandeHaar P, Gagliano SA, Gifford A, Bastarache LA, Wei WQ, Denny JC, Lin M, Hveem K, Kang HM, Abecasis GR, Willer CJ, Lee S. Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies. Nat Genet. 2018 Sep;50(9):1335-1341. doi: 10.1038/s41588-018-0184-y. Epub 2018 Aug 13. PMID: 30104761; PMCID: PMC6119127.
+### POLMM:
+- Support ordinal categorical trait
+- Single-variant tests
+- Can account for sample relatedness
+- Bi, Wenjian, Wei Zhou, Rounak Dey, Bhramar Mukherjee, Joshua N. Sampson, and Seunggeun Lee. **Efficient mixed model approach for large-scale genome-wide association studies of ordinal categorical phenotypes.** The American Journal of Human Genetics 108, no. 5 (2021): 825-839.
 
-### SAIGE-GENE:
-- Zhou W\*, Zhao Z\*, Nielsen JB, Fritsche LG, LeFaive J, Gagliano Taliun SA, Bi W, Gabrielsen ME, Daly MJ, Neale BM, Hveem K, Abecasis GR, Willer CJ, Lee S. Scalable generalized linear mixed model for region-based association tests in large biobanks and cohorts. Nat Genet. 2020 Jun;52(6):634-639. doi: 10.1038/s41588-020-0621-6. Epub 2020 May 18. PMID: 32424355; PMCID: PMC7871731.
+### POLMM-GENE:
+- Support ordinal categorical trait
+- Set-based tests
+- Can account for sample relatedness
+- Bi, Wenjian, Wei Zhou, Peipei Zhang, Yaoyao Sun, Weihua Yue, and Seunggeun Lee. **Scalable mixed model approaches for set-based association studies on large-scale categorical data analysis and its application to 450k exome sequencing data in UK Biobank.** To be submitted.
 
-### SAIGE-GENE+:
-- Wei Zhou\*, Wenjian Bi\*, Zhangchen Zhao\*, Kushal K. Dey, Karthik A. Jagadeesh, Konrad J. Karczewski, Mark J. Daly, Benjamin M. Neale, Seunggeun Lee. Set-based rare variant association tests for biobank scale sequencing data sets. medRxiv 2021.07.12.21260400; doi: https://doi.org/10.1101/2021.07.12.21260400 
+### SPACox:
+- Support Time-to-event trait
+- Single-variant tests
+- Cannot account for sample relatedness
+- Bi, Wenjian, Lars G. Fritsche, Bhramar Mukherjee, Sehee Kim, and Seunggeun Lee. **A fast and accurate method for genome-wide time-to-event data analysis and its application to UK Biobank.** The American Journal of Human Genetics 107, no. 2 (2020): 222-233.
+
+### SAIGE (supported later):
+- Support quantitative and binary trait
+- Single-variant tests
+- Can account for sample relatedness
+- Zhou, Wei, Jonas B. Nielsen, Lars G. Fritsche, Rounak Dey, Maiken E. Gabrielsen, Brooke N. Wolford, Jonathon LeFaive et al. **Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies.** Nature genetics 50, no. 9 (2018): 1335-1341.
+
+### SAIGE-GENE (supported later):
+- Support quantitative and binary trait
+- Set-based tests
+- Can account for sample relatedness
+- Zhou, Wei, Zhangchen Zhao, Jonas B. Nielsen, Lars G. Fritsche, Jonathon LeFaive, Sarah A. Gagliano Taliun, Wenjian Bi et al. **Scalable generalized linear mixed model for region-based association tests in large biobanks and cohorts.** Nature genetics 52, no. 6 (2020): 634-639.
+
+
 
 ## License
 SAIGE is distributed under an GPL license.
 
 
 ## Contact
-If you have any questions about SAIGE please contact
-saige.genetics@gmail.com
+If you have any questions about GRAB package, please contact wenjianb@pku.edu.cn
