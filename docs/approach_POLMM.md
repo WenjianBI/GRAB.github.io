@@ -3,7 +3,7 @@ layout: default
 title: POLMM / POLMM-GENE
 nav_order: 2
 description: "POLMM approaches: ordinal categorical trait analysis."
-parent: Null Model Fitting
+parent: Association Approaches
 has_children: false
 has_toc: false
 ---

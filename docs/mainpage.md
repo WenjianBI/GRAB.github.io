@@ -11,17 +11,18 @@ GRAB is an R package developed with Rcpp for Genome-wide Robust Analaysis design
 - account for sample relatedness using Genetic Relationship Matrix (GRM)
 - support multiple phenotypes including quantitative, binary, time-to-event, and ordinal categorical traits
 - handle unbalanced phenotypic distribution (e.g. case-control imbalance of binary traits)
-- computationally efficient for large data sets
-- performs single-variant and set-based association tests such as Burden, SKAT, and SKAT-O test
+- are computationally efficient for large data sets
+- perform single-variant and set-based association tests such as Burden, SKAT, and SKAT-O test
 
-For set-based association tests, 
+For set-based association tests, GRAB
 - performs BURDEN, SKAT, and SKAT-O tests
 - allows for tests on multiple minor allele frequencies cutoffs and functional annotations
 - allows for specifying weights for markers in the set-based tests
 - performs conditional analysis to identify associations independent from nearly GWAS signals
 
 The package takes genotype file input in the following formats
-- PLINK binary files (.bed, .bim, .fam), BGEN (.bgen, .bgi, .sample)
+- PLINK binary files (.bed, .bim, .fam)
+- BGEN (.bgen, .bgi, .sample)
 
 ## Approaches
 
@@ -58,7 +59,7 @@ The package takes genotype file input in the following formats
 
 
 ## License
-SAIGE is distributed under an GPL license.
+GRAB is distributed under an GPL license.
 
 
 ## Contact
