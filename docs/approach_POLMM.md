@@ -3,28 +3,30 @@ layout: default
 title: POLMM / POLMM-GENE
 nav_order: 2
 description: "POLMM approaches: ordinal categorical trait analysis."
-parent: Association Approaches
+parent: Genome-wide assocition analyses
 has_children: false
 has_toc: false
 ---
 
 # POLMM approaches 
 
-POLMM and POLMM-GENE are accurate and efficient approaches to associate an ordinal categorical trait to single-variant and variant-set, respectively.
+```POLMM``` and ```POLMM-GENE``` are accurate and efficient approaches to associate an ordinal categorical trait to single-variant and variant-set, respectively.
 
 ## Main features
 
-- designed for ordinal categorical phenotype
-- accurate for balanced and unbalanced phenotypic distributions
-- scalable for a large-scale biobank data analysis
+```POLMM``` and ```POLMM-GENE``` are
+
+- designed for ordinal categorical trait
+- accurate for unbalanced phenotypic distribution (e.g. sample size proportion in three levels is 30:1:1 )
+- scalable for a large-scale biobank data analysis (e.g. UK Biobank)
 - support both dense GRM and sparse GRM (recommanded) to adjust for family relatedness
-- support both single variant analysis and region-based analysis (Burden, SKAT, and SKAT-O)
+- support both single variant analysis and region-based analysis (Burden tests, SKAT, and SKAT-O)
 
-## Notes prior to analysis
+## Important notes prior to analysis
 
-- The left side of argument ```formula``` should be a factor. If function ```factor``` is used to convert phenotype to a factor, we highly recommend explicitly specifying argument ```levels```.
+- When fitting a null model in step 1, the left side of argument ```formula``` should be a factor. If function ```factor``` is used to convert phenotype to a factor, we highly recommend explicitly specifying argument ```levels```.
 
-- We recommend using Sparse GRM to adjust for family relatedness due to its high computational efficiency. And generally we did not observe a power loss compared to using dense GRM.
+- We recommend using Sparse GRM to adjust for family relatedness due to its high computational efficiency. And generally, we did not observe a power loss compared to using dense GRM.
 
 ## Start-up examples
 

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Association Approaches
-nav_order: 6
+title: Genome-wide assocition analyses
+nav_order: 4
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 has_children: true
 has_toc: true
 ---
 
-# Null model fitting using GRAB package 
+# Genome-wide association tests using GRAB package 
 
 ```GRAB``` package gives a generic framework to analyze a wide variaty of commonly used phenotypes. 
 

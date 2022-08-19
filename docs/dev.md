@@ -8,7 +8,7 @@ has_children: true
 
 # For analysis tool developer
 
-```GRAB``` package provides a generic framework of GWAS on a large-scale biobank data. The below gives details about how to incorporate a new tool.
+```GRAB``` package provides a generic framework of GWAS on a large-scale biobank data. The below gives a brief idea about how to incorporate a new tool into ```GRAB``` package.
 
 Suppose that the method is ```ABCDE```, then the following functions are required.
 - checkControl.NullModel.ABCDE(control, optionGRM)
