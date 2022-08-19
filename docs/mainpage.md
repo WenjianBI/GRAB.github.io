@@ -6,6 +6,8 @@ description: "Main page for GRAB package."
 permalink: /
 ---
 
+# Main features of GRAB package
+
 ```GRAB``` is an R package developed using ```Rcpp``` for **G**enome-wide **R**obust **A**nalaysis designed for **B**iobank data **(GRAB)**. The package includes multiple approaches which
 
 - account for sample relatedness using **G**enetic **R**elationship **M**atrix **(GRM)**

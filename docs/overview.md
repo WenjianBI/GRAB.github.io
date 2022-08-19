@@ -9,15 +9,18 @@ has_toc: false
 
 # Overview of GRAB package 
 
-The ```GRAB``` package is mainly designed for **genome-wide association analyses**. In addition, it can also be used to **simulate genotype/phenotype data**, **to calculate sparse GRM**, and **to read in genotype from PLINK/BGEN files**.  
+The ```GRAB``` package is mainly designed for **genome-wide association analyses**. In addition, it can also be used to 
+- **simulate genotype/phenotype data**, 
+- **to calculate sparse GRM**, and 
+- **to read in genotype from PLINK/BGEN files**.  
 
 ## Genome-wide association analyses
 
 The ```GRAB``` package supports multiple phenotypes including
 
-- Binary trait (SAIGE, SAIGE-GENE)
-- Quantitative trait (SAIGE, SAIGE-GENE)
-- Ordianl categorical trait (POLMM, POLMM-GENE)
+- Binary trait (SAIGE / SAIGE-GENE)
+- Quantitative trait (SAIGE / SAIGE-GENE)
+- Ordianl categorical trait (POLMM / POLMM-GENE)
 - Time-to-event trait (SPACox)
 
 All of these approaches share the same analysis framework including the following three steps
@@ -26,13 +29,15 @@ All of these approaches share the same analysis framework including the followin
 - Step 1: Fit a null model including phenotype, covariates, and GRM (if applied).
 - Step 2: Conduct single-variant or set-based tests to identify marker or marker-set (e.g. gene) associated with traits.
 
-## Data Simulation
+## Data simulation
 
-The ```GRAB``` package can be used to simulate genotype/phenotype data
+The ```GRAB``` package can be used to simulate genotype/phenotype data.
 
 ## Genetic Relationship Matrix (GRM)
 
-The ```GRAB``` package supports sparse GRM to adjust for family relatedness.
+The ```GRAB``` package supports sparse GRM to adjust for family relatedness. Functions ```getTempFilesFullGRM()``` and ```getSparseGRM()``` can be used to generate a sparse GRM using PLINK files.
 
+## Read in genotype data
 
+The ```GRAB``` package can also be used to extract genotype data from PLINK/BGEN files.
 

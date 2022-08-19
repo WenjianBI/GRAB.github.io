@@ -3,7 +3,7 @@ layout: default
 title: SAIGE / SAIGE-GENE
 nav_order: 1
 description: "SAIGE approaches: quantitative and binary trait analysis."
-parent: Association Approaches
+parent: Genome-wide assocition analyses
 has_children: false
 has_toc: false
 ---
