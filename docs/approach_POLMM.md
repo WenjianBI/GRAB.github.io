@@ -3,36 +3,41 @@ layout: default
 title: POLMM / POLMM-GENE
 nav_order: 2
 description: "POLMM approaches: ordinal categorical trait analysis."
-parent: Genome-wide assocition analyses
+parent: Genome-wide association studies
 has_children: false
 has_toc: false
 ---
 
 # POLMM approaches 
 
-```POLMM``` and ```POLMM-GENE``` are accurate and efficient approaches to associate an ordinal categorical trait to single-variant and variant-set, respectively.
+```POLMM``` and ```POLMM-GENE``` are accurate and efficient approaches to associate an ordinal categorical trait to single-variant and variant-set (e.g. gene), respectively.
 
 ## Main features
 
 ```POLMM``` and ```POLMM-GENE``` are
 
-- designed for ordinal categorical trait
-- accurate for unbalanced phenotypic distribution (e.g. sample size proportion in three levels is 30:1:1 )
-- scalable for a large-scale biobank data analysis (e.g. UK Biobank)
-- support both dense GRM and sparse GRM (recommanded) to adjust for family relatedness
-- support both single variant analysis and region-based analysis (Burden tests, SKAT, and SKAT-O)
+- designed for ordinal categorical trait analysis,
+- accurate for unbalanced phenotypic distribution (e.g. sample size proportion in three levels is 30:1:1 ),
+- scalable for a large-scale biobank data analysis (e.g. UK Biobank),
+- support both dense GRM and sparse GRM (recommanded) to adjust for family relatedness,
+- support both single-variant analysis and set-based analysis (Burden tests, SKAT, and SKAT-O).
 
 ## Important notes prior to analysis
 
-- When fitting a null model in step 1, the left side of argument ```formula``` should be a factor. If function ```factor``` is used to convert phenotype to a factor, we highly recommend explicitly specifying argument ```levels```.
+- The left side of argument ```formula``` should be a factor when fitting a null model in step 1. If function ```factor``` is used to convert phenotype to a factor, we highly recommend specifying argument ```levels``` explicitly.
 
-- We recommend using Sparse GRM to adjust for family relatedness due to its high computational efficiency. And generally, we did not observe a power loss compared to using dense GRM.
+- We recommend using sparse GRM to adjust for family relatedness due to its high computational efficiency. And generally, we did not observe a power loss compared to using dense GRM.
 
-## Start-up examples
+## Quick Start-up Guide
 
-### First read in phenotype and covariate data
+The below gives an example to demonstrate the usage of POLMM approaches 
+
+### First read in data and convert phenotype to a factor
 
 ```
+library(data.table)
+library(tidyr)
+library(dplyr)
 PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
 PhenoData = data.table::fread(PhenoFile, header = T)
 PhenoData = PhenoData %>% mutate(OrdinalPheno = factor(OrdinalPheno, 

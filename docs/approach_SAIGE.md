@@ -3,14 +3,14 @@ layout: default
 title: SAIGE / SAIGE-GENE
 nav_order: 1
 description: "SAIGE approaches: quantitative and binary trait analysis."
-parent: Genome-wide assocition analyses
+parent: Genome-wide association studies
 has_children: false
 has_toc: false
 ---
 
-# SAIGE approach 
+# SAIGE approach (Supported later)
 
-SAIGE and SAIGE-GENE are accurate and efficient approaches to analyze quantitative and binary traits. (Supported later)
+SAIGE and SAIGE-GENE are accurate and efficient approaches to analyze quantitative and binary traits.
 
 ## Citation
 
