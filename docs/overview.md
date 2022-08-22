@@ -23,14 +23,14 @@ The ```GRAB``` package supports multiple phenotypes including
 - Ordianl categorical trait (POLMM / POLMM-GENE), and
 - Time-to-event trait (SPACox)
 
-All of these approaches share the same analysis framework including the following three steps
+All of these approaches share the same analysis framework including the following two steps
 
-- Step 1: Fit a null model including phenotype, covariates, and GRM (if applied).
-- Step 2: Conduct single-variant or set-based tests to identify marker or marker-set (e.g. gene) associated with traits.
+- Step 1: Fit a null model using phenotype, covariates, and GRM (if applied).
+- Step 2: Conduct single-variant or set-based tests to identify marker or marker-set (e.g. gene) significantly associated with traits.
 
 ## Preparation before using GRAB package
 
-One of the main features for ```GRAB``` package is to support using genotype data to adjust for sample relatedness via genetic relationship matrix (GRM). PLINK binary files including high-quality genotyped variants are required for that purpose. In UK Biobank real data analysis, we used the following cutoffs in PLINK to select ~ 340K SNPs for White British subjects.
+One of the main features for ```GRAB``` package is to support using genotype data to adjust for sample relatedness via genetic relationship matrix (GRM). PLINK binary files with high-quality genotyped variants are required for that purpose. In UK Biobank real data analysis, we used the following cutoffs in PLINK to select ~ 340K SNPs for White British subjects.
 
 ```
 --maf 0.05
@@ -43,22 +43,26 @@ If the sample size in analysis is greater than 100,000, we recommend using spars
 
 - Step 2: Run ```getSparseGRM``` to combine the temporary files to make a SparseGRMFile to be passed to function GRAB.NullModel.
 
-Users can customize parameters including ```(minMafGRM, maxMissingGRM, nPartsGRM)```, but functions ```getTempFilesFullGRM``` and ```getSparseGRM``` should use the same ones. Otherwise, package ```GRAB``` cannot accurately identify temporary files.
+Users can customize parameters including ```(minMafGRM, maxMissingGRM, nPartsGRM)```, but functions ```getTempFilesFullGRM``` and ```getSparseGRM``` should use the same ones. Otherwise, package ```GRAB``` cannot accurately locate temporary files.
 
 The GRAB package supports the below genotype file format for association studies
 
 - ```PLINK``` binary files (.bed, .bim, .fam)
 - ```BGEN``` (.bgen, .bgi, .sample)
 
-## Data simulation
+## Other functions in ```GRAB``` package
+
+The ```GRAB``` package provides some additional functions to facilitate users. More details can be seen in the corresponding sections. 
+
+### Data simulation
 
 The ```GRAB``` package can be used to simulate genotype/phenotype data.
 
-## Genetic Relationship Matrix (GRM)
+### Genetic Relationship Matrix (GRM)
 
 The ```GRAB``` package supports sparse GRM to adjust for family relatedness. Functions ```getTempFilesFullGRM()``` and ```getSparseGRM()``` can be used to generate a sparse GRM using PLINK files.
 
-## Read in genotype data
+### Read in genotype data
 
 The ```GRAB``` package can also be used to read in genotype data from PLINK/BGEN files.
 
