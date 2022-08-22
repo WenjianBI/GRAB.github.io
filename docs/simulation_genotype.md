@@ -6,9 +6,12 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-# Genotype simulation using GRAB package and other tools
+# Genotype simulation
 
-## The below is an example to simulate genotype matrix in R
+The ```GRAB``` package can be used to simulate genotype data of both unrelated and related subjects. 
+
+## Quick Start-up Guide
+
 ``` 
 set.seed(12345)
 OutList = GRAB.SimuGMat(nSub = 500,                   # 500 unrelated subjects
@@ -16,12 +19,19 @@ OutList = GRAB.SimuGMat(nSub = 500,                   # 500 unrelated subjects
                         FamMode = "10-members",       # each family includes 10 members
                         nSNP = 10000,                 # 10000 SNPs
                         MaxMAF = 0.5, MinMAF = 0.05)  # MAFs follow a uniform distribuiton U(0.05, 0.5)
+```
 
-summary(OutList)
+The function returns an R list ```OutList``` including two elements of ```GenoMat``` and ```markerInfo``` as below.
+
+```summary(OutList)
 #            Length   Class      Mode   
 # GenoMat    10000000 -none-     numeric
 # markerInfo        2 data.table list
+```
 
+```markerInfo``` gives two columns: ```SNP``` and ```MAF```
+
+```
 markerInfo = OutList$markerInfo
 markerInfo
 #              SNP       MAF
@@ -36,7 +46,11 @@ markerInfo
 #  9998:  SNP_9998 0.0601416
 #  9999:  SNP_9999 0.2161107
 # 10000: SNP_10000 0.1632723
+```
 
+```GenoMat``` is a matrix, each row is for one subject and each column is for one SNP.
+
+```
 GenoMat = OutList$GenoMat
 dim(GenoMat)   
 # [1]  1000 10000 # genotype matrix includes 1000 subjects and 10000 SNPs
@@ -60,10 +74,12 @@ GenoMat[c(1:5,996:1000),1:10]  # Subjects 1-5 are from family 1; Subjects 496-50
 
 ### Note about FamMode
 
-Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then we only simulate unrelated subjects.
+Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then only genotype of unrelated subjects were simulated.
 
 ## Simulate genotype missing
-We follow PLINK to use -9 to indicate genotype missing.
+
+The below gives an example to simluate genotype missing given a missing rate, in which "-9" is to indicate genotype missing, as PLINK does.
+
 ```
 MissingRate = 0.05
 indexMissing = sample(length(GenoMat), MissingRate * length(GenoMat))
@@ -82,6 +98,9 @@ GenoMat[indexMissing] = -9
 ```
 
 ## Make PLINK PED/MAP files using the genotype matrix
+
+Note: this function is not computationally efficient and will be updated later.
+
 ```
 extDir = system.file("extdata", package = "GRAB")
 extPrefix = paste0(extDir, "/simuPLINK")
@@ -106,11 +125,10 @@ Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` c
 
 For rare variants (MAF < 1%), we suggest using real genotype data for simulation purpose. 
 
-## Simulate genotype using real data
+### Simulate genotype using real data
 
-If PLINK or BGEN files are available function ```GRAB.SimuGMatFromGenoFile``` can simulate genotype using the real data.
+Function ```GRAB.SimuGMatFromGenoFile``` can simulate genotype using PLINK and BGEN genotype files.
 
-An example is as below and more details can be seen via ?GRAB.SimuGMatFromGenoFile
 ```
 nFam = 2
 nSub = 3
@@ -123,5 +141,3 @@ GenoList = GRAB.SimuGMatFromGenoFile(nFam, nSub, FamMode, PLINKFile,
                                      control = list(IDsToIncludeFile = IDsToIncludeFile,
                                                    RangesToIncludeFile = RangesToIncludeFile))
 ```
-
-

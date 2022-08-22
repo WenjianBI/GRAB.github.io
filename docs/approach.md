@@ -7,7 +7,7 @@ has_children: true
 has_toc: true
 ---
 
-# Genome-wide association tests using GRAB package 
+# Genome-wide association studies
 
 ```GRAB``` package gives a generic framework to analyze a wide variaty of phenotypes. 
 

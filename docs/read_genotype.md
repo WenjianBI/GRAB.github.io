@@ -7,7 +7,7 @@ has_children: false
 has_toc: false
 ---
 
-The ```GRAB``` package gives a function of ```GRAB.ReadGeno``` to read in genotype data from ```PLINK``` and ```BGEN``` files.
+The ```GRAB``` package gives function ```GRAB.ReadGeno``` to read in genotype data from ```PLINK``` and ```BGEN``` files.
 
 ## Quick Start-up Guide
 
@@ -91,7 +91,7 @@ Argument control is used to include and exclude markers for function GRAB.ReadGe
 
 ## Value
 
-An R list including a genotype matrix and an information matrix.
+The function returns an R list including a genotype matrix and an information matrix.
 
 - GenoMat: Genotype matrix, each row is for one sample and each column is for one marker.
 

@@ -8,7 +8,7 @@ has_children: false
 has_toc: false
 ---
 
-# SPACox approach 
+# SPACox approach (Supported later)
 
 SPACox is an accurate and efficient approach to associating a time-to-event trait to single-variant.
 
