@@ -13,17 +13,19 @@ has_children: false
 
 - ```GRAB``` package includes a function ```getSparseGRM```, which implicitly uses tool ```GCTA``` software (gcta_1.93.1beta, [link](https://cnsgenomics.com/software/gcta/#Overview)) to make a ```SparseGRMFile``` to be passed to function ```GRAB.NullModel```. 
 
-- As required by ```GCTA``` software, the function ```getSparseGRM``` is only supported in **Linux OS** and **PLINK binary files with the same prefix** are required. 
+- As required by ```GCTA``` software, the function ```getSparseGRM``` is only supported in **Linux** operation system and **PLINK binary files with the same prefix** are required. 
 
-- It has been reported that if the PLINK files include more than one ancestry, the GRM estimation might be highly inaccurate.
+- It has been reported that if the PLINK files include subjects with more than one ancestry, the GRM estimation might be highly inaccurate.
 
 ## Step 1: Prepare PLINK binary files
+
 ```
 GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
 PlinkPrefix = tools::file_path_sans_ext(GenoFile)   # remove file extension
 ```
 
 ## Step 2: RUN ```getTempFilesFullGRM``` to get temporary files
+
 - Besides ```PlinkPrefix```, arguments ```nPartsGRM``` and ```partParallel``` are required.
 - The GRM calculation is split to ```nPartsGRM``` parts for parallel computation. 
 - For UK Biobank data analysis with ~ 500K samples, we recommend setting nPartsGRM = 250 and using multiple CPU cores in High Performance Cluster.

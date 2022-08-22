@@ -12,16 +12,48 @@ has_toc: true
 ```GRAB``` package gives a generic framework to analyze a wide variaty of phenotypes. 
 
 ## Quick start-up examples
+
+The below gives an example to use POLMM and POLMM-GENE to analyze ordinal categorical trait. 
+
 ```
-PhenoData = read.table(system.file("extdata", "example.pheno", package = "GRAB"), header = T)
-GenoFile = system.file("extdata", "example.bed", package = "GRAB")
-obj.POLMM = GRAB.NullModel(formula = factor(Ordinal) ~ Cova1 + Cova2,
+library(GRAB)
+PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
+PhenoData = data.table::fread(PhenoFile, header = T)
+PhenoData = PhenoData %>% mutate(OrdinalPheno = factor(OrdinalPheno, 
+                                                       levels = c(0, 1, 2)))
+SparseGRMFile =  system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
+GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
+
+# Step 1: fit a null model using sparse GRM
+obj.POLMM = GRAB.NullModel(formula = OrdinalPheno ~ AGE + GENDER,
                            data = PhenoData, 
                            subjData = PhenoData$IID, 
                            method = "POLMM", 
                            traitType = "ordinal",
                            GenoFile = GenoFile,
+                           SparseGRMFile = SparseGRMFile,
                            control = list(showInfo = FALSE, LOCO = FALSE, tolTau = 0.2, tolBeta = 0.1))
+
+# Step 2(a) single-variant tests using POLMM
+GenoFile = system.file("extdata", "nSNPs-10000-nsubj-1000-ext.bed", package = "GRAB")
+OutputDir = system.file("results", package = "GRAB")
+OutputFile = paste0(OutputDir, "/POLMMMarkers.txt")
+GRAB.Marker(obj.POLMM, GenoFile = GenoFile,
+            OutputFile = OutputFile)
+data.table::fread(OutputFile)
+            
+# Step 2(b) variant-set tests using POLMM-GENE
+
+GRAB.Region(obj.POLMM,
+            GenoFile,
+            GenoFileIndex,
+            OutputFile,
+            OutputFileIndex,
+            RegionFile,              # column 1: marker Set ID, column 2: SNP ID, columns 3-n: Annotations similar as in STAAR
+            RegionAnnoHeader,
+            SparseGRMFile,
+            control)
+
 ```
 
 ## Step 1: choose ```traitType``` and ```method```

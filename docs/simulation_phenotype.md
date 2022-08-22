@@ -6,17 +6,20 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 parent: Data Simulation
 ---
 
-# Phenotype simulation using GRAB package
+# Phenotype simulation
 
-The document can show how to simulate
-- Binary phenotype
-- Quantitative phenotype
-- Ordinal categorical phenotype
-- Time-to-event data
+The below demonstrates the simulation of
+- Binary trait
+- Quantitative trait
+- Ordinal categorical trait
+- Time-to-event trait (to be updated)
 
-## An example to simulate covariates data frame in R
+The phenotype data ```system.file("extdata", "simuPHENO.txt", package = "GRAB")``` is simulated as below line by line.
+
+### First, we simulate covariates data frame in R
 
 ```
+library(GRAB)
 set.seed(678910)
 FamFile = system.file("extdata", "simuPLINK.fam", package = "GRAB")
 FamData = data.table::fread(FamFile)
@@ -25,63 +28,60 @@ n = length(IID)   # sample size
 Covar = data.table::data.table(IID = IID,
                                AGE = rnorm(n, 60), 
                                GENDER = rbinom(n, 1, 0.5))
-CovarFile = system.file("extdata", "simuCovar.txt", package = "GRAB")
-write.table(Covar, CovarFile, row.names = F, quote = F, sep = "\t")
 ```
 
-## Step 1: simulate linear predictors ```eta```
+### Then, we simulate linear predictors ```eta```
 
 ```
-library(tidyr)
-library(dplyr)
-set.seed(13579)
-CovarFile = system.file("extdata", "simuCovar.txt", package = "GRAB")
-Covar = data.table::fread(CovarFile, header=T)
 beta.AGE = 0.5
 beta.GENDER = 0.5
 eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
 ```
 
-### Note about the linear predictors ```eta```
+If the simulated phenotype is associated with a random term related to family structure (mixed model approaches) or genotype (to evaluate power), then the linear predictors ```eta``` should be updated by adding the corresponding terms. 
 
-If the simulated phenotype is associated with family structure (mixed model approaches) or genotype (to evaluate power), then the linear predictors ```eta``` can be updated by adding other terms. 
+### Next, we simulate phenotypes using ```eta```
 
-## Step 2: simulate phenotypes using ```eta```
-
-### Step 2(a) binary phenoype
+**A.** binary trait
 ```
-set.seed(1)
-phenoB = GRAB.SimuPheno(eta, traitType = "binary", 
-                        control = list(pCase=0.1))
-table(phenoB)
-# phenoB
+BinaryPheno = GRAB.SimuPheno(eta, traitType = "binary", 
+                             control = list(pCase=0.1))
+table(BinaryPheno)
+# BinaryPheno
 #   0   1 
 # 900 100
 ```
 
-### Step 2(b) quantitative phenoype
+**B.** quantitative trait
 ```
-set.seed(1)
-phenoQ = GRAB.SimuPheno(eta, traitType = "quantitative", 
-                        control = list(sdError=1))
+QuantPheno = GRAB.SimuPheno(eta, traitType = "quantitative", 
+                            control = list(sdError=1))
 ```
 
-### Step 2(c) ordinal categorical phenoype
+**C.** ordinal categorical phenoype
 ```
-set.seed(1)
-phenoO = GRAB.SimuPheno(eta, traitType = "ordinal",
-                        control = list(pEachGroup = c(8,1,1)))
-table(phenoO)
-# phenoO
+OrdinalPheno = GRAB.SimuPheno(eta, traitType = "ordinal",
+                              control = list(pEachGroup = c(8,1,1)))
+table(OrdinalPheno)
+# OrdinalPheno
 #   0   1   2 
 # 800 100 100
 ```
 
-### Step 2(d) time-to-event phenoype
+**D.** time-to-event phenoype (to be updated)
 ```
-# To be continued
 # GRAB.SimuPheno(eta, traitType = "time-to-event",
 #                control = list(pEachGroup=c(8, 1, 1)))
+```
+
+We write the phenotype data to ```system.file("extdata", "simuPHENO.txt", package = "GRAB")```
+```
+PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
+PhenoData = cbind(Covar, 
+                  BinaryPheno = BinaryPheno,
+                  OrdinalPheno = OrdinalPheno,
+                  QuantPheno = QuantPheno)
+data.table::fwrite(PhenoData, PhenoFile, row.names = F, quote = F, col.names = T, sep = "\t")                  
 ```
 
 ## The distribution of simulated phenotypes
