@@ -30,18 +30,18 @@ All of these approaches share the same analysis framework including the followin
 
 ## Preparation before using GRAB package
 
-One of the main features for ```GRAB``` package is to support using genotype data to adjust for sample relatedness via genetic relationship matrix (GRM). PLINK binary files with high-quality genotyped variants are required for that purpose. In UK Biobank real data analysis, we used the following cutoffs in PLINK to select ~ 340K SNPs for White British subjects.
+One of the main features of ```GRAB``` package is to support using genotype data to adjust for sample relatedness via genetic relationship matrix (GRM). PLINK binary files with high-quality genotyped variants are required for that purpose. In UK Biobank real data analysis, we used the following cutoffs in PLINK to select ~ 340K SNPs for White British subjects.
 
 ```
 --maf 0.05
 --indep-pairwise 500 50 0.2
 ```
 
-If the sample size in analysis is greater than 100,000, we recommend using sparse GRM (instead of dense GRM) to adjust for sample relatedness. Function ```getSparseGRM``` uses ```GCTA``` software (gcta_1.93.1beta) to make a ```SparseGRMFile``` to be passed to function ```GRAB.NullModel```. This function can only support Linux and PLINK files as required by ```GCTA``` software. To make a ```SparseGRMFile```, two steps are needed as below. 
+If the sample size in analysis is greater than 100,000, we recommend using sparse GRM (instead of dense GRM) to adjust for sample relatedness. Function ```getSparseGRM``` uses ```GCTA``` software (gcta_1.93.1beta) to make a ```SparseGRMFile``` to be passed to function ```GRAB.NullModel```. This function can only support Linux and PLINK files, as required by ```GCTA``` software. To make a ```SparseGRMFile```, two steps are needed as below. 
 
 - Step 1: Run ```getTempFilesFullGRM``` to save temporary files to tempDir.
 
-- Step 2: Run ```getSparseGRM``` to combine the temporary files to make a SparseGRMFile to be passed to function GRAB.NullModel.
+- Step 2: Run ```getSparseGRM``` to combine the temporary files to make a ```SparseGRMFile``` to be passed to function ```GRAB.NullModel```.
 
 Users can customize parameters including ```(minMafGRM, maxMissingGRM, nPartsGRM)```, but functions ```getTempFilesFullGRM``` and ```getSparseGRM``` should use the same ones. Otherwise, package ```GRAB``` cannot accurately locate temporary files.
 
@@ -54,7 +54,7 @@ The GRAB package supports the below genotype file format for association studies
 
 The ```GRAB``` package provides some additional functions to facilitate users. More details can be seen in the corresponding sections. 
 
-### Data simulation
+### Data Simulation
 
 The ```GRAB``` package can be used to simulate genotype/phenotype data.
 
@@ -62,7 +62,7 @@ The ```GRAB``` package can be used to simulate genotype/phenotype data.
 
 The ```GRAB``` package supports sparse GRM to adjust for family relatedness. Functions ```getTempFilesFullGRM()``` and ```getSparseGRM()``` can be used to generate a sparse GRM using PLINK files.
 
-### Read in genotype data
+### Read in Genotype Data
 
-The ```GRAB``` package can also be used to read in genotype data from PLINK/BGEN files.
+The ```GRAB``` package can also be used to read in genotype data to R from PLINK/BGEN files.
 

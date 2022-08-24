@@ -13,14 +13,14 @@ The example data in the directory of ```system.file("extdata", package = "GRAB")
 
 ## Genotype Simulation
 
-The document demonstrates how to 
+This section demonstrates how to 
 - simulate a genotype matrix for unrelated and related subjects
 - make PLINK binary files using the genotype matrix
 - make BGEN files using PLINK binary files
 
 ## Phenotype Simulation
 
-The document demonstrates how to 
+This section demonstrates how to 
 - simulate binary, quantitative, time-to-event, and ordinal categorical phenotypes
 - simulate phenotypes with random effect following a multivariate normal distribution
 - simulate phenotypes using real genotype data (given PLINK binary files)

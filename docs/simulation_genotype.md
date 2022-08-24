@@ -8,7 +8,7 @@ parent: Data Simulation
 
 # Genotype simulation
 
-The ```GRAB``` package can be used to simulate genotype data including both unrelated and related subjects. The genotype examples in the directory ```system.file("extdata", package = "GRAB")``` is simulated as below line by line.       
+The ```GRAB``` package can be used to simulate genotype data for both unrelated and related subjects. The genotype example data in the directory ```system.file("extdata", package = "GRAB")``` is simulated as below line by line.       
 
 ## Quick Start-up Guide
 
