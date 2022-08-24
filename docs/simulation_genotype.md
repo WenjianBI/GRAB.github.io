@@ -77,6 +77,8 @@ GenoMat[c(1:5,996:1000),1:10]  # Subjects `f1_1` - `f1-5` are from family 1; `Su
 
 Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then genotype were simulated only for unrelated subjects.
 
+<img src="{{site.baseurl | prepend: site.url}}img/FamMode.jpeg">
+
 ## Simulate genotype missing
 
 The below gives an example to simluate genotype missing given a missing rate, in which ```-9``` is to indicate genotype missing, as PLINK does.
