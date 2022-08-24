@@ -35,18 +35,24 @@ Covar = data.table::data.table(IID = IID,
 ```
 beta.AGE = 0.5
 beta.GENDER = 0.5
-eta = with(Covar, beta.AGE * AGE + beta.GENDER * GENDER)
+Covar = Covar %>% mutate(eta = beta.AGE * AGE + beta.GENDER * GENDER)
 ```
 
-If the simulated phenotype is associated with a random term related to family structure (mixed model approaches) or genotype (to evaluate power), then the linear predictors ```eta``` should be updated by adding the corresponding terms. 
+To simulate phenotypes for subjects with a given family structure, please add a random effect to the linear predictors ```eta``` as below.
+
+```
+bVec = GRAB.SimubVec(500, 50, "10-members", tau = 1)
+Covar = merge(Covar, bVec)
+PhenoData = Covar %>% mutate(eta = eta + bVec)
+```
 
 ### Next, we simulate phenotypes using ```eta```
 
 **A.** binary trait
 ```
-BinaryPheno = GRAB.SimuPheno(eta, traitType = "binary", 
-                             control = list(pCase=0.1))
-table(BinaryPheno)
+PhenoData = PhenoData %>% mutate(BinaryPheno = GRAB.SimuPheno(eta, traitType = "binary", 
+                                                              control = list(pCase=0.1)))
+PhenoData %>% select(BinaryPheno) %>% table()
 # BinaryPheno
 #   0   1 
 # 900 100
@@ -91,5 +97,9 @@ The distribution of simulated phenotypes compared to linear predicators ```eta``
 - ordinal categorical phenotype: higher ```eta```, higher possibility of being groups with larger number
 
 <img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
+
+
+
+
 
 

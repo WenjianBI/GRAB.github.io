@@ -75,7 +75,7 @@ GenoMat[c(1:5,996:1000),1:10]  # Subjects `f1_1` - `f1-5` are from family 1; `Su
 
 ### Note about FamMode
 
-Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members```. If ```nFam``` is not specified, then genotype were simulated only for unrelated subjects.
+Currently, we support three ```FamMode``` including ```4-members```, ```10-members```, and ```20-members``` with the family structures as below. If ```nFam``` is not specified, then genotype were simulated only for unrelated subjects.
 
 <img src="{{site.baseurl | prepend: site.url}}img/FamMode.jpg">
 
