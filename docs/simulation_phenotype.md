@@ -61,13 +61,13 @@ PhenoData %>% select(BinaryPheno) %>% table()
 **B.** quantitative trait
 ```
 PhenoData = PhenoData %>% mutate(QuantPheno = GRAB.SimuPheno(eta, traitType = "quantitative", 
-                                                              control = list(sdError=1)))
+                                                             control = list(sdError=1)))
 ```
 
 **C.** ordinal categorical phenoype
 ```
 PhenoData = PhenoData %>% mutate(OrdinalPheno = GRAB.SimuPheno(eta, traitType = "ordinal", 
-                                                              control = list(pEachGroup = c(8,1,1))))
+                                                               control = list(pEachGroup = c(8,1,1))))
 PhenoData %>% select(OrdinalPheno) %>% table()
 # .
 #   0   1   2 

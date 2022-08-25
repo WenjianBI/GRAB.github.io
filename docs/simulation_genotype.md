@@ -111,7 +111,7 @@ extPrefix = paste0(extDir, "/simuPLINK")
 GRAB.makePlink(GenoMat, extPrefix)
 ```
 
-If you have installed softwares PLINK, PLINK2, and bgenix, then you can use the following commands to generate PLINK binary files and BGEN files. 
+If you have installed softwares PLINK1.9, PLINK2, and bgenix, then you can use the following commands to generate PLINK binary files and BGEN files. 
 
 ```
 setwd(extDir)
@@ -127,21 +127,42 @@ Given arguments of ```MaxMAF``` and ```MinMAF```, function ```GRAB.SimuGMat``` c
 - common variants (MAF > 5%) and 
 - low frequency variants (1% < MAF < 5%). 
 
-For rare variants (MAF < 1%), we suggest using real genotype data to mimic the LD structure. 
+For rare variants (MAF < 1%), we suggest using real genotype data from unrelated subjects to simulate family structure while mimicking the LD structure. 
 
 ### Simulate genotype using real data
 
 Function ```GRAB.SimuGMatFromGenoFile``` can simulate genotype data using PLINK and BGEN files.
 
 ```
-nFam = 2
-nSub = 3
+set.seed(123)
+nFam = 50
+nSub = 500
 FamMode = "10-members"
-PLINKFile = system.file("extdata", "example.bed", package = "GRAB")
-IDsToIncludeFile = system.file("extdata", "example.IDsToIncludeFile.txt", package = "GRAB")
-RangesToIncludeFile = system.file("extdata", "example.RangesToIncludeFile.txt", package = "GRAB")
+
+# PLINK data format
+PLINKFile = system.file("extdata", "example_n1000_m236.bed", package = "GRAB")
+IDsToIncludeFile = system.file("extdata", "example_n1000_m236.IDsToInclude", package = "GRAB")
 
 GenoList = GRAB.SimuGMatFromGenoFile(nFam, nSub, FamMode, PLINKFile,
-                                     control = list(IDsToIncludeFile = IDsToIncludeFile,
-                                                   RangesToIncludeFile = RangesToIncludeFile))
+                                     control = list(IDsToIncludeFile = IDsToIncludeFile))
+
+# Currently, this function does not support BGEN data format
+# BGENFile = system.file("extdata", "example_n1000_m236.bgen", package = "GRAB")
+# IDsToIncludeFile = system.file("extdata", "example_n1000_m236.IDsToInclude", package = "GRAB")
+
+# GenoList = GRAB.SimuGMatFromGenoFile(nFam, nSub, FamMode, BGENFile,
+#                                      control = list(IDsToIncludeFile = IDsToIncludeFile))
 ```
+
+Then, we make PLINK files using the genotype data
+
+```
+GenoMat = GenoList$GenoMat
+GenoMat[is.na(GenoMat)] = -9
+extDir = system.file("extdata", package = "GRAB")
+extPrefix = paste0(extDir, "/simuPLINK_RV")
+GRAB.makePlink(GenoMat, extPrefix)
+setwd(extDir)
+system("plink --file simuPLINK --make-bed --out simuPLINK")
+```
+
