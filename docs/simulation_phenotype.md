@@ -53,23 +53,23 @@ PhenoData = Covar %>% mutate(eta = eta + bVec)
 PhenoData = PhenoData %>% mutate(BinaryPheno = GRAB.SimuPheno(eta, traitType = "binary", 
                                                               control = list(pCase=0.1)))
 PhenoData %>% select(BinaryPheno) %>% table()
-# BinaryPheno
+# .
 #   0   1 
 # 900 100
 ```
 
 **B.** quantitative trait
 ```
-QuantPheno = GRAB.SimuPheno(eta, traitType = "quantitative", 
-                            control = list(sdError=1))
+PhenoData = PhenoData %>% mutate(QuantPheno = GRAB.SimuPheno(eta, traitType = "quantitative", 
+                                                              control = list(sdError=1)))
 ```
 
 **C.** ordinal categorical phenoype
 ```
-OrdinalPheno = GRAB.SimuPheno(eta, traitType = "ordinal",
-                              control = list(pEachGroup = c(8,1,1)))
-table(OrdinalPheno)
-# OrdinalPheno
+PhenoData = PhenoData %>% mutate(OrdinalPheno = GRAB.SimuPheno(eta, traitType = "ordinal", 
+                                                              control = list(pEachGroup = c(8,1,1))))
+PhenoData %>% select(OrdinalPheno) %>% table()
+# .
 #   0   1   2 
 # 800 100 100
 ```
@@ -80,14 +80,11 @@ table(OrdinalPheno)
 #                control = list(pEachGroup=c(8, 1, 1)))
 ```
 
-We write the phenotype data to ```system.file("extdata", "simuPHENO.txt", package = "GRAB")```
+The phenotype data is stored in ```system.file("extdata", "simuPHENO.txt", package = "GRAB")```
 ```
 PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
-PhenoData = cbind(Covar, 
-                  BinaryPheno = BinaryPheno,
-                  OrdinalPheno = OrdinalPheno,
-                  QuantPheno = QuantPheno)
-data.table::fwrite(PhenoData, PhenoFile, row.names = F, quote = F, col.names = T, sep = "\t")                  
+data.table::fwrite(PhenoData, PhenoFile, 
+                   row.names = F, quote = F, col.names = T, sep = "\t")                  
 ```
 
 ## The distribution of simulated phenotypes

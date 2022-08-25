@@ -9,7 +9,7 @@ has_toc: true
 
 # Data simulation using GRAB package
 
-The example data in the directory of ```system.file("extdata", package = "GRAB")``` were simulated using the functions in ```GRAB``` package. 
+The example data (including 50 families with 10 members and 500 unrelated subjects) in the directory of ```system.file("extdata", package = "GRAB")``` were simulated using the functions in ```GRAB``` package. 
 
 ## Genotype Simulation
 

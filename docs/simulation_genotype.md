@@ -58,7 +58,7 @@ dim(GenoMat)
 class(GenoMat)
 # [1] "matrix" "array"
 
-GenoMat[c(1:5,996:1000),1:10]  # Subjects `f1_1` - `f1-5` are from family 1; `Subj-496` - `Subj-500` are unrelated subjects
+GenoMat[c(1:5,996:1000),1:10]  # Subjects `f1_1` - `f1-10` are from family 1; `Subj-1` - `Subj-500` are unrelated subjects
 #          SNP_1 SNP_2 SNP_3 SNP_4 SNP_5 SNP_6 SNP_7 SNP_8 SNP_9 SNP_10
 # f1_1         0     1     2     2     1     0     0     0     1      1
 # f1_2         1     1     1     0     0     0     0     0     1      1
