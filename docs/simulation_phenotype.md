@@ -5,10 +5,10 @@ nav_order: 2
 description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 parent: Data Simulation
 ---
-
-# Phenotype simulation
-
-The below demonstrates the simulation of
+  
+  # Phenotype simulation
+  
+  The below demonstrates the simulation of
 - Binary trait
 - Quantitative trait
 - Ordinal categorical trait
@@ -62,6 +62,7 @@ PhenoData %>% select(BinaryPheno) %>% table()
 ```
 PhenoData = PhenoData %>% mutate(QuantPheno = GRAB.SimuPheno(eta, traitType = "quantitative", 
                                                              control = list(sdError=1)))
+# Random number seed:      98062725
 ```
 
 **C.** ordinal categorical phenoype
@@ -94,9 +95,4 @@ The distribution of simulated phenotypes compared to linear predicators ```eta``
 - ordinal categorical phenotype: higher ```eta```, higher possibility of being groups with larger number
 
 <img src="{{site.baseurl | prepend: site.url}}img/SimuPheno.jpeg">
-
-
-
-
-
-
+  

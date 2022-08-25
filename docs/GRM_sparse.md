@@ -17,14 +17,16 @@ has_children: false
 
 - It has been reported that if the PLINK files include subjects with more than one ancestry, the GRM estimation might be highly inaccurate.
 
-## Step 1: Prepare PLINK binary files
+## Step 0: Prepare PLINK binary files
+
+PLINK binary files with high-quality genotyped variants are required to make a sparse GRM. In UK Biobank real data analysis, we used the following cutoffs in PLINK to select ~ 340K SNPs for White British subjects.
 
 ```
-GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
-PlinkPrefix = tools::file_path_sans_ext(GenoFile)   # remove file extension
+--maf 0.05
+--indep-pairwise 500 50 0.2
 ```
 
-## Step 2: RUN ```getTempFilesFullGRM``` to get temporary files
+## Step 1: RUN ```getTempFilesFullGRM``` to get temporary files
 
 - Besides ```PlinkPrefix```, arguments ```nPartsGRM``` and ```partParallel``` are required.
 - The GRM calculation is split to ```nPartsGRM``` parts for parallel computation. 
@@ -39,6 +41,8 @@ PlinkPrefix = tools::file_path_sans_ext(GenoFile)   # remove file extension
   
 Example:
 ```
+GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
+PlinkPrefix = tools::file_path_sans_ext(GenoFile)   # remove file extension
 nPartsGRM = 2;
 for(partParallel in 1:nPartsGRM)
 {
@@ -48,7 +52,7 @@ for(partParallel in 1:nPartsGRM)
 }
 ```
 
-## Step 3: RUN ```getSparseGRM``` to combine the temporary files
+## Step 2: RUN ```getSparseGRM``` to combine the temporary files
 - Function ```getSparseGRM``` can search the temporary files from ```tempDir``` based on arguments ```minMafGRM``` and ```maxMissingGRM```.
 - Argument ```relatednessCutoff``` is the cutoff for sparse GRM, only kinship coefficient greater than this cutoff will be retained in sparse GRM. (default=0.05)
 - If argument ```rm.tempFiles``` is set as ```TRUE```, then all temporary files will be removed.
@@ -70,16 +74,16 @@ SparseGRMFile = system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
 SparseGRM = data.table::fread(SparseGRMFile)
 SparseGRM
 #            ID1      ID2     Value
-#    1:     f1_1     f1_1 0.9591102
-#    2:     f1_2     f1_2 1.0227757
-#    3:     f1_3     f1_3 1.0278691
-#    4:     f1_4     f1_4 1.0138606
-#    5:     f1_5     f1_1 0.4640743
-#   ---                            
-# 2546: Subj-496 Subj-496 1.0031059
-# 2547: Subj-497 Subj-497 0.9952855
-# 2548: Subj-498 Subj-498 0.9829549
-# 2549: Subj-499 Subj-499 1.0086861
-# 2550: Subj-500 Subj-500 0.9786987
+#    1:     f1_1     f1_1 0.9550625
+#    2:     f1_2     f1_2 1.0272297
+#    3:     f1_3     f1_3 1.0192574
+#    4:     f1_4     f1_4 1.0053836
+#    5:     f1_5     f1_1 0.4648096
+#   ---
+# 2547: Subj-496 Subj-496 1.0027448
+# 2548: Subj-497 Subj-497 0.9913247
+# 2549: Subj-498 Subj-498 0.9785985
+# 2550: Subj-499 Subj-499 1.0109795
+# 2551: Subj-500 Subj-500 0.9783296
 ```
 

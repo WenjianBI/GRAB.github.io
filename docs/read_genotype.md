@@ -11,10 +11,15 @@ The ```GRAB``` package gives function ```GRAB.ReadGeno``` to read in genotype da
 
 ## Quick Start-up Guide
 
+The below gives an example to read in genotype data of SNPs in ```IDsToIncludeFile``` from PLINK/BGEN files to R
+
 ```
+IDsToIncludeFile = system.file("extdata", "simuGENO.IDsToInclude", package = "GRAB")
+
 ## PLINK files
 PLINKFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
-GenoList = GRAB.ReadGeno(PLINKFile, control = list(AllMarkers = TRUE)) # If include/exclude files are not specified, then control$AllMarker should be TRUE
+GenoList = GRAB.ReadGeno(PLINKFile, 
+                         control = list(IDsToIncludeFile = IDsToIncludeFile)) 
 GenoMat = GenoList$GenoMat
 markerInfo = GenoList$markerInfo
 head(GenoMat[,1:6])
@@ -22,7 +27,8 @@ head(markerInfo)
 
 ## BGEN files (Note the different REF/ALT order for BGEN and PLINK formats)
 BGENFile = system.file("extdata", "simuBGEN.bgen", package = "GRAB")
-GenoList = GRAB.ReadGeno(BGENFile, control = list(AllMarkers = TRUE))
+GenoList = GRAB.ReadGeno(BGENFile, 
+                         control = list(IDsToIncludeFile = IDsToIncludeFile))
 GenoMat = GenoList$GenoMat
 markerInfo = GenoList$markerInfo
 head(GenoMat[,1:6])

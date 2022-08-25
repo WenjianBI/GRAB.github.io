@@ -117,7 +117,7 @@ If you have installed softwares PLINK1.9, PLINK2, and bgenix, then you can use t
 setwd(extDir)
 system("plink --file simuPLINK --make-bed --out simuPLINK")
 system("plink --bfile simuPLINK --recode A --out simuRAW")
-system("plink2 --bfile simuPLINK --export bgen-1.2 bits=8 ref-first --out simuBGEN)  # UK Biobank use 'ref-first'"
+system("plink2 --bfile simuPLINK --export bgen-1.2 bits=8 ref-first --out simuBGEN")  # UK Biobank use 'ref-first'"
 system("bgenix -g simuBGEN.bgen -index")
 ```
 
@@ -163,6 +163,6 @@ extDir = system.file("extdata", package = "GRAB")
 extPrefix = paste0(extDir, "/simuPLINK_RV")
 GRAB.makePlink(GenoMat, extPrefix)
 setwd(extDir)
-system("plink --file simuPLINK --make-bed --out simuPLINK")
+system("plink --file simuPLINK_RV --make-bed --out simuPLINK_RV")
 ```
 
