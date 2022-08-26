@@ -13,7 +13,7 @@ The ```GRAB``` package can be installed in R or via docker.
 
 UK Biobank Research Analysis Platform (RAP) supports docker installation. For more details about the ```GRAB``` package build, installation, and usage, please check the section ```UK Biobank RAP```. 
 
-## Install GRAB package in R (current version: 0.0.3.2)
+## Install GRAB package in R (current version: 0.0.3.3)
 
 ### In **Linux** operation system
 

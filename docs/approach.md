@@ -21,39 +21,49 @@ PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
 PhenoData = data.table::fread(PhenoFile, header = T)
 PhenoData = PhenoData %>% mutate(OrdinalPheno = factor(OrdinalPheno, 
                                                        levels = c(0, 1, 2)))
+
+# Step 1: fit a null model
 SparseGRMFile =  system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
 GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
-
-# Step 1: fit a null model using sparse GRM
 obj.POLMM = GRAB.NullModel(formula = OrdinalPheno ~ AGE + GENDER,
                            data = PhenoData, 
                            subjData = PhenoData$IID, 
                            method = "POLMM", 
                            traitType = "ordinal",
                            GenoFile = GenoFile,
-                           SparseGRMFile = SparseGRMFile,
-                           control = list(showInfo = FALSE, LOCO = FALSE, tolTau = 0.2, tolBeta = 0.1))
+                           SparseGRMFile =  SparseGRMFile,
+                           control = list(showInfo = FALSE, 
+                                          LOCO = FALSE, 
+                                          tolTau = 0.2, 
+                                          tolBeta = 0.1))                                                       
 
-# Step 2(a) single-variant tests using POLMM
-GenoFile = system.file("extdata", "nSNPs-10000-nsubj-1000-ext.bed", package = "GRAB")
+# Step 2(a): conduct a marker-level association study
+GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
 OutputDir = system.file("results", package = "GRAB")
-OutputFile = paste0(OutputDir, "/POLMMMarkers.txt")
+OutputFile = paste0(OutputDir, "/simuMarkerOutput.txt")
 GRAB.Marker(obj.POLMM, GenoFile = GenoFile,
             OutputFile = OutputFile)
+
+results = data.table::fread(OutputFile)
+hist(results$Pvalue)
+
+# Step 2(b): conduct a set-based association study
+GenoFile = system.file("extdata", "simuPLINK_RV.bed", package = "GRAB")
+OutputDir = system.file("results", package = "GRAB")
+OutputFile = paste0(OutputDir, "/simuRegionOutput.txt")
+GroupFile = system.file("extdata", "simuPLINK_RV.group", package = "GRAB")
+SparseGRMFile = system.file("SparseGRM", "SparseGRM.txt", package = "GRAB")
+
+GRAB.Region(objNull = obj.POLMM,
+            GenoFile = GenoFile,
+            GenoFileIndex = NULL,
+            OutputFile = OutputFile,
+            OutputFileIndex = NULL,
+            GroupFile = GroupFile,
+            SparseGRMFile = SparseGRMFile,
+            MaxMAFVec = "0.01,0.005")
+
 data.table::fread(OutputFile)
-            
-# Step 2(b) variant-set tests using POLMM-GENE
-
-GRAB.Region(obj.POLMM,
-            GenoFile,
-            GenoFileIndex,
-            OutputFile,
-            OutputFileIndex,
-            RegionFile,              # column 1: marker Set ID, column 2: SNP ID, columns 3-n: Annotations similar as in STAAR
-            RegionAnnoHeader,
-            SparseGRMFile,
-            control)
-
 ```
 
 ## Step 1: choose ```traitType``` and ```method```
