@@ -57,7 +57,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base
 
 other attached packages:
- [1] GRAB_0.0.3.9       Rcpp_1.0.10        igraph_1.4.3       dbplyr_2.3.2
+ [1] GRAB_0.1       Rcpp_1.0.10        igraph_1.4.3       dbplyr_2.3.2
  [5] dplyr_1.1.2        tidyr_1.3.0        SKAT_2.2.5         RSpectra_0.16-1
  [9] SPAtest_3.1.2      Matrix_1.5-3       ordinal_2022.11-16 survival_3.4-0
 [13] remotes_2.4.2
@@ -100,7 +100,7 @@ attached base packages:
 [7] base     
 
 other attached packages:
- [1] GRAB_0.0.3.9       Rcpp_1.0.10        igraph_1.2.6      
+ [1] GRAB_0.1       Rcpp_1.0.10        igraph_1.2.6      
  [4] dbplyr_2.3.2       dplyr_1.1.2        tidyr_1.3.0       
  [7] SKAT_2.2.5         RSpectra_0.16-1    SPAtest_3.1.2     
 [10] Matrix_1.3-3       ordinal_2022.11-16 survival_3.2-11   

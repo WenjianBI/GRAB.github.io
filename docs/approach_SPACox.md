@@ -39,7 +39,7 @@ The three methods are different in terms of
 ## Quick Start-up Guide
 The below gives examples to demonstrate the usage of ```SPACox```, ```SPAmix```, and ```SPAGRM``` approaches.
 
-Step 1. Read in data and fit a null model
+### Step 1. Read in data and fit a null model
 
 ```
 library(GRAB)
@@ -51,19 +51,41 @@ obj.SPACox = GRAB.NullModel(Surv(SurvTime, SurvEvent)~AGE+GENDER, data = PhenoDa
 ```SPACox``` method can also support model residuals as input. The above codes are the same as below.
 
 ```
-obj.coxph = coxph(Surv(SurvTime, SurvEvent)~AGE+GENDER, data = PhenoData, x=T)
+obj.coxph = coxph(Surv(SurvTime, SurvEvent)~AGE+GENDER, data = PhenoData)
 obj.SPACox = GRAB.NullModel(obj.coxph$residuals~AGE+GENDER, data = PhenoData, subjData = IID, method = "SPACox", traitType = "Residual")
 ```
 
-Step 2. Conduct genome-wide association studies
+```SPAmix``` method also support both original trait or model residuals as input. For ```SPAmix```, the confounding factors of SNP-derived PCs are required and should be specified in ```control```.
 
-For different type of traits and methods, the step 2 is the same as below.
+```
+library(GRAB)
+PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
+PhenoData = data.table::fread(PhenoFile, header = T)
+N = nrow(PhenoData)
+PhenoData = PhenoData %>% mutate(PC1 = rnorm(N), PC2 = rnorm(N))  # add two PCs
+obj.SPAmix = GRAB.NullModel(Surv(SurvTime, SurvEvent)~AGE+GENDER+PC1+PC2, data = PhenoData, subjData = IID, method = "SPAmix", traitType = "time-to-event", control = list(PC_columns = "PC1,PC2"))
+```
+
+The same results can be obtained via using model residuals
+
+```
+obj.coxph = coxph(Surv(SurvTime, SurvEvent)~AGE+GENDER+PC1+PC2, data = PhenoData)
+obj.SPACox = GRAB.NullModel(obj.coxph$residuals~AGE+GENDER+PC1+PC2, data = PhenoData, subjData = IID, method = "SPAmix", traitType = "Residual", control = list(PC_columns = "PC1,PC2"))
+```
+
+### Step 2. Conduct genome-wide association studies
+
+For different types of traits and methods, the step 2 is the same as below.
 
 ```
 GenoFile = system.file("extdata", "simuPLINK.bed", package = "GRAB")
 OutputDir = system.file("results", package = "GRAB")
+# step 2 for SPACox method
 OutputFile = paste0(OutputDir, "/Results_SPACox.txt")
 GRAB.Marker(obj.SPACox, GenoFile = GenoFile, OutputFile = OutputFile)
+# step 2 for SPAmix method
+OutputFile = paste0(OutputDir, "/Results_SPAmix.txt")
+GRAB.Marker(obj.SPAmix, GenoFile = GenoFile, OutputFile = OutputFile)
 ```
 
 
