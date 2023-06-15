@@ -24,7 +24,7 @@ has_toc: false
 
 ## Important notes prior to analysis
 
-- The left side of argument ```formula``` should be a factor when fitting a null model in step 1. If function ```factor``` is used to convert phenotype to a factor, we highly recommend specifying argument ```levels``` explicitly.
+- For function ```GRAB.NullModel```, the left side of argument ```formula``` should be a factor when fitting a null model in step 1. If function ```factor``` is used to convert phenotype to a factor, we highly recommend specifying argument ```levels``` explicitly.
 
 - We recommend using sparse GRM to adjust for family relatedness due to its high computational efficiency. And generally, we did not observe a power loss compared to using dense GRM.
 

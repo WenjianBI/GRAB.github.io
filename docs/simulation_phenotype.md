@@ -53,6 +53,7 @@ PhenoData = Covar %>% mutate(eta = eta + bVec)
 PhenoData = PhenoData %>% mutate(BinaryPheno = GRAB.SimuPheno(eta, traitType = "binary", 
                                                               control = list(pCase=0.1)))
 PhenoData %>% select(BinaryPheno) %>% table()
+# Random number seed:	 493536667
 # .
 #   0   1 
 # 900 100
@@ -65,23 +66,38 @@ PhenoData = PhenoData %>% mutate(QuantPheno = GRAB.SimuPheno(eta, traitType = "q
 # Random number seed:      98062725
 ```
 
-**C.** ordinal categorical phenoype
+**C.** ordinal categorical trait
 ```
 PhenoData = PhenoData %>% mutate(OrdinalPheno = GRAB.SimuPheno(eta, traitType = "ordinal", 
                                                                control = list(pEachGroup = c(8,1,1))))
 PhenoData %>% select(OrdinalPheno) %>% table()
+# Random number seed:	 418335750
 # .
 #   0   1   2 
 # 800 100 100
 ```
 
-**D.** time-to-event phenoype (to be updated)
+**D.** time-to-event trait
 ```
-# GRAB.SimuPheno(eta, traitType = "time-to-event",
-#                control = list(pEachGroup=c(8, 1, 1)))
+TimeToEventPheno = GRAB.SimuPheno(PhenoData$eta, traitType = "time-to-event", control = list(eventRate = 0.1))
+# Random number seed:	 881619480
+PhenoData = cbind(PhenoData, TimeToEventPheno)
 ```
 
-The phenotype data is stored in ```system.file("extdata", "simuPHENO.txt", package = "GRAB")```
+The simulated phenotype data is as below
+
+```
+head(PhenoData)
+#         IID      AGE GENDER      eta       bVec BinaryPheno QuantPheno OrdinalPheno   SurvTime SurvEvent
+# 1:   Subj-1 59.61118      0 29.59961 -0.2059781           0  0.2786663            0 0.03245097         0
+# 2:  Subj-10 61.31636      0 29.32101 -1.3371678           0 -2.2973289            0 0.19733412         0
+# 3: Subj-100 59.16625      0 29.90944  0.3263173           0 -2.4870252            1 0.09451178         0
+# 4: Subj-101 60.18490      1 28.99876 -1.5936861           0 -3.4063276            0 0.10946053         0
+# 5: Subj-102 58.76700      1 27.90020 -1.9832990           0 -3.4421444            0 0.04882298         0
+# 6: Subj-103 59.98608      1 29.11236 -1.3806732           0 -1.3891887            0 0.30540795         0
+```
+
+The phenotype data is stored in the below file ```system.file("extdata", "simuPHENO.txt", package = "GRAB")```
 ```
 PhenoFile = system.file("extdata", "simuPHENO.txt", package = "GRAB")
 data.table::fwrite(PhenoData, PhenoFile, 
