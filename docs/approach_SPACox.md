@@ -88,6 +88,7 @@ OutputFile = paste0(OutputDir, "/Results_SPAmix.txt")
 GRAB.Marker(obj.SPAmix, GenoFile = GenoFile, OutputFile = OutputFile)
 ```
 
+Detailed documentation about how to use SPAGRM is available at [SPAGRM online tutorial](https://fantasy-xuhe.github.io/SPAGRM.github.io/).
 
 ## Citation
 
